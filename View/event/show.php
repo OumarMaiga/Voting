@@ -8,5 +8,8 @@
 </head>
 <body>
     <h2>Event::show</h2>
+    <h3><?= $event['titre'] ?></h3>
+    <a href="index.php?action=edit_event&id=<?= $event['id'] ?>">Modifier</a>
+    <a href="index.php?action=delete_event&id=<?= $event['id'] ?>">Supprimer</a>
 </body>
 </html>

@@ -13,7 +13,7 @@
         }
 
         public function index() {
-                
+            require('View/candidat/index.php');
         }
 
         public function create() {
@@ -21,6 +21,10 @@
         }
 
         public function save() {
+                
+        }
+
+        public function show() {
                 
         }
 

@@ -8,6 +8,24 @@
 </head>
 <body>
     <h2>Accueil</h2>
-    <p><?= md5('password123') ?></p>
+    <p>
+        <?php
+            if(isset($_SESSION['user'])) {
+        ?>
+            <a href="index.php?action=logout">Deconnexion</a>
+        <?php
+            } else {
+        ?>
+            <a href="index.php?action=login">Login</a>
+        <?php } ?>
+    </p>
+    <ul>
+        <li>
+            <a href="index.php?action=index_event">Event</a>
+        </li>
+        <li>
+            <a href="index.php?action=index_candidat">Candidat</a>
+        </li>
+    </ul>
 </body>
 </html>

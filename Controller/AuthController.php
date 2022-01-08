@@ -17,11 +17,30 @@
             require('View/auth/login.php');
         }
 
-        public function signIn() {
+        public function sign_in() {
             if((isset($_POST['login']) && $_POST['login'] != "") && (isset($_POST['password']) && $_POST['password'] != "")) {
-                $inputs = array($_POST['login'], $_POST['password']);
-                $this->user->authenticate($inputs);
+                
+                $inputs = array("login" => $_POST['login'], "password" => $_POST['password']);
+                $request = $this->auth->authenticate($inputs);
+                $request->execute();
+                
+                if($data = $request->fetch()) {
+                    
+                    $_SESSION['user'] = $data;
+
+                    header('location:index.php?action=accueil');
+                
+                } else {
+                    header('location:index.php?action=login&msg=not_found');
+                }
+            } else {
+                header('location:index.php?action=login&msg=empty');
             }
+        }
+        
+        public function logout() {
+            session_unset();
+            header('location:index.php?action=accueil&msg=logout');
         }
         
     }

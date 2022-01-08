@@ -1,4 +1,5 @@
 <?php
+    session_start();
 
     require "./bootstrap.php";
 
@@ -26,8 +27,8 @@
         case  'login':
             $auth->login();
             break;
-        case  'signIn':
-            $auth->signIn();
+        case  'sign_in':
+            $auth->sign_in();
             break;
         case  'logout':
             $auth->logout();
@@ -44,6 +45,9 @@
             break;
         case  'create_candidat':
             $candidat->create();
+            break;
+        case  'save_candidat':
+            $candidat->save();
             break;
         case  'edit_candidat':
             $candidat->edit();
@@ -65,17 +69,20 @@
         case  'create_event':
             $event->create();
             break;
+        case  'save_event':
+            $event->save();
+            break;
         case  'edit_event':
-            $event->edit();
+            $event->edit($_GET['id']);
             break;
         case  'update_event':
-            $event->update();
+            $event->update($_GET['id']);
             break;
         case  'show_event':
-            $event->show();
+            $event->show($_GET['id']);
             break;
         case  'delete_event':
-            $event->delete();
+            $event->delete($_GET['id']);
             break;
         
         default:
