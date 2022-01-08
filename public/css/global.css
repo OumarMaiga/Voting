@@ -1,0 +1,31 @@
+.page-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.25;
+  color: #00449e;
+  padding: 14px 16px;
+}
+
+.header-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: #00449e;
+}
+
+.actions {
+  color: #00449e;
+  text-decoration: none;
+}
+
+.icon {
+  padding-left: 35px !important;
+}
+
+.add-btn {
+  margin-left: 15px;
+}
