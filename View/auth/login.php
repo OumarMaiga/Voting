@@ -8,5 +8,11 @@
 </head>
 <body>
     <h2>Login</h2>
+    <p><?= md5('password123') ?></p>
+        <form method="POST" action="index.php?action=signIn">
+        <input type="text" name="login" value="login"/>
+        <input type="text" name="password" value="password"/>
+        <input type="submit" value="Login"/>
+    </form>
 </body>
 </html>

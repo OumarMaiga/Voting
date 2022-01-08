@@ -8,5 +8,6 @@
 </head>
 <body>
     <h2>Accueil</h2>
+    <p><?= md5('password123') ?></p>
 </body>
 </html>

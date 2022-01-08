@@ -8,11 +8,11 @@
     use Controller\EventController;
     use Controller\PageController;
     
-    $auth = new AuthController($dbConnection);
-    $user = new UserController($dbConnection);
-    $page = new PageController($dbConnection);
-    $candidat = new CandidatController($dbConnection);
-    $event = new EventController($dbConnection);
+    $auth = new AuthController;
+    $user = new UserController;
+    $page = new PageController;
+    $candidat = new CandidatController;
+    $event = new EventController;
 
     if(isset($_GET['action'])) {
         $action = $_GET['action'];
@@ -25,6 +25,9 @@
 //////////////////////////// AuthController //////////////////////////////////  
         case  'login':
             $auth->login();
+            break;
+        case  'signIn':
+            $auth->signIn();
             break;
         case  'logout':
             $auth->logout();

@@ -2,12 +2,14 @@
 
     namespace Model;
 
+    use Database\DatabaseConnector;
+    
     class Candidat {
         
         private $db;
 
-        public function __construct($db) {
-            $this->db = $db;
+        public function __construct() {
+            $this->db = (new DatabaseConnector())->getConnection();
         }
 
         public function authenticate(Array $inputs) {
