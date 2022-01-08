@@ -2,17 +2,14 @@
 
     namespace Controller;
 
-    use Model\Auth;
     use Model\Event;
 
     class EventController {
         
 
-        private $auth;
-        private $user;
+        private $event;
         
         public function __construct() {
-            $this->auth = new Auth;
             $this->event = new Event;
         }
 
@@ -70,7 +67,7 @@
                 require('View/event/edit.php'); 
             } else {
                 header('location:index.php?action=index_event&msg=event_not_fetched');
-            }  
+            }
         }
 
         public function update($id) {

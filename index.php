@@ -50,16 +50,16 @@
             $candidat->save();
             break;
         case  'edit_candidat':
-            $candidat->edit();
+            $candidat->edit($_GET['id']);
             break;
         case  'update_candidat':
-            $candidat->update();
+            $candidat->update($_GET['id']);
             break;
         case  'show_candidat':
-            $candidat->show();
+            $candidat->show($_GET['id']);
             break;
         case  'delete_candidat':
-            $candidat->delete();
+            $candidat->delete($_GET['id']);
             break;
 
 //////////////////////////// EventController //////////////////////////////////
