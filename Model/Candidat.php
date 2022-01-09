@@ -38,7 +38,13 @@
         public function getById($id) {
             $req = $this->db->prepare('SELECT * from candidats WHERE id=:id LIMIT 1');
             $req->bindParam(':id', $id);
-            return $req;
+            $req->execute();
+            return $req->fetch();
+        }
+
+        public function getBy($key, $value) {
+            $req = $this->db->query("SELECT * from candidats WHERE $key=$value");
+            return $req->fetchAll();
         }
 
         public function getAll() {

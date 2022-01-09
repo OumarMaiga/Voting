@@ -1,24 +1,79 @@
+<?php
+  require('helpers/helper.php')
+?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidat</title>
-</head>
-<body>
-    <h2>Candidat::index</h2>
-    <div>
-        <a href="index.php?action=create_candidat">Création</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="public/css/global.css" />
+    <link rel="stylesheet" href="public/css/tabs.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Online Voting - Admin</title>
+  </head>
+  <body>
+    <h1 class="page-title">Espace administrateur</h1>
+
+    <!-- Tab links -->
+    <div class="tab mt-2">
+      <div class="">
+        <button class="tablinks" onclick="openSection(event, 'Event')">
+          Participants
+        </button>
+      </div>
     </div>
-    <div>
-        <ul>
+
+    <!-- Participants list Tab content -->
+    <div id="Event" class="tabcontent">
+      <h3 class="header-title">Campagne : <?= $event['titre'] ?></h3>
+      <a href="index.php?action=create_candidat&event_id=<?= $event['id'] ?>">
+        <button class="btn btn-outline-primary add-btn mt-4">
+          <i class="fas fa-plus"></i> &nbsp;Ajouter un participant
+        </button>
+      </a>
+      <table class="table table-hover mt-4">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Votes</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
             <?php 
+            $n = 0;
             foreach ($candidats as $candidat) {
+                $n++;
             ?>
-                <li><a href="index.php?action=show_candidat&id=<?= $candidat['id'] ?>"><?= $candidat['prenom']." ".$candidat['nom'] ?></a></li>
+                <tr>
+                    <th scope="row"><?= $n ?></th>
+                    <td><?= $candidat['prenom'] ?></td>
+                    <td><?= $candidat['nom'] ?></td>
+                    <td><?= genre($candidat['genre']) ?></td>
+                    <td><?= $candidat['prenom'] ?></td>
+                    <td class="actions">
+                    <a class="actions" href="index.php?action=edit_candidat&id=<?= $candidat['id'] ?>">Modifier</a>
+                    </td>
+                </tr>
             <?php } ?>
-        </ul>
+        </tbody>
+      </table>
     </div>
-</body>
+
+    <script
+      src="https://kit.fontawesome.com/64d67fd16e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="public/js/tabs.js"></script>
+  </body>
 </html>

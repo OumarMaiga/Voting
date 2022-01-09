@@ -31,9 +31,6 @@
         <li>
             <a href="index.php?action=index_event">Event</a>
         </li>
-        <li>
-            <a href="index.php?action=index_candidat">Candidat</a>
-        </li>
     </ul>
     <div class="container mt-4">
       <a data-micromodal-trigger="modal-1" href="javascript:void(0);">

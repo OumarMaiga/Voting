@@ -33,7 +33,7 @@
       <div class="container">
         <h3 class="header-title">Créer une campagne</h3>
         <form
-          action="index.php?action=create_event"
+          action="index.php?action=save_event"
           method="post"
           enctype="multipart/form-data"
           class="row g-3 mt-4"
@@ -91,66 +91,6 @@
           <div class="col-12">
             <button type="submit" class="btn btn-primary">
               Créer ma campagne
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Candidat Tab content -->
-    <div id="Candidat" class="tabcontent">
-      <div class="container">
-        <h3 class="header-title">Créer un candidat</h3>
-        <form
-          action=""
-          method="post"
-          enctype="multipart/form-data"
-          class="row g-3 mt-4"
-        >
-          <div class="col-md-4">
-            <label for="nom" class="form-label">Nom</label>
-            <input type="text" class="form-control" name="nom" id="nom" />
-          </div>
-          <div class="col-md-4">
-            <label for="prenom" class="form-label">Prénom</label>
-            <input type="text" class="form-control" name="prenom" id="prenom" />
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <label class="form-label">Genre</label>
-            <div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="genre" id="homme" value="option1">
-                <label class="form-check-label" for="homme">Homme</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="genre" id="femme" value="option2">
-                <label class="form-check-label" for="femme">Femme</label>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <label for="birthdate" class="form-label">Date de naissance</label>
-            <input
-              type="date"
-              class="form-control"
-              name="date_naissance"
-              id="birthdate"
-            />
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <label for="image" class="form-label">Photo du candidat</label>
-            <input
-              type="file"
-              class="form-control"
-              name="image"
-              id="image"
-              accept=".jpg, .jpeg, .png"
-            />
-          <div class="col-12 mt-4">
-            <button type="submit" class="btn btn-primary">
-              Créer le candidat
             </button>
           </div>
         </form>

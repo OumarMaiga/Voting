@@ -17,42 +17,38 @@
             $this->event = new Event;
         }
 
-        public function index() {
-            $candidats = $this->candidat->getAll();
+        public function index($event_id) {
+            $candidats = $this->candidat->getBy('event_id', $event_id);
+            $event = $this->event->getById($event_id);
             require('View/candidat/index.php');
         }
         
-        public function create() {
-            $events = $this->event->getAll();
+        public function create($event_id) {
+            $event = $this->event->getById($event_id);
             require('View/candidat/create.php');                    
         }
 
-        public function save() {
+        public function save($event_id) {
             // Impossible si le user n'est pas connecter
-            if (!isset($_SESSION['user'])) {
-                header('location:index.php?action=create_candidat&msg=user_required');
+            if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
+                header('location:index.php?action=create_candidat&event_id='.$event_id.'&msg=user_required');
             }
 
-            // Impossible si les champs obligatoire ne sont pas remplis
-            if((!isset($_POST['titre']) || $_POST['titre'] == "") || (!isset($_POST['expire']) || $_POST['expire'] == "")) {
-                header('location:index.php?action=create_candidat&msg=field_required');
-            }
-            
+            $_POST['event_id'] = $event_id;
             $candidat = $this->candidat->save($_POST);
-
+            
             if($candidat->execute()) {
-                header('location:index.php?action=index_candidat&msg=candidat_created');
+                header('location:index.php?action=index_candidat&event_id='.$event_id.'&msg=candidat_created');
             } else {
-                header('location:index.php?action=create_candidat&msg=candidat_not_created');
+                header('location:index.php?action=create_candidat&event_id='.$event_id.'&msg=candidat_not_created');
             }
 
         }
 
         public function show($id) {
-            $result = $this->candidat->getById($id);
-            $result->execute();
+            $candidat = $this->candidat->getById($id);
 
-            if($candidat = $result->fetch()) {
+            if(empty($candidat)) {
                 require('View/candidat/show.php'); 
             } else {
                 header('location:index.php?action=index_candidat&msg=candidat_not_fetched');
@@ -60,24 +56,28 @@
         }
 
         public function edit($id) {   
-            $events = $this->event->getAll();
-            $result = $this->candidat->getById($id);
-            $result->execute();
+            $candidat = $this->candidat->getById($id);
+            
+            if(!empty($candidat)) {
+                
+                $event = $this->event->getById($candidat['event_id']);
 
-            if($candidat = $result->fetch()) {
                 // Formatage de la date
                 $date = date_create($candidat['date_naissance']);
                 $date = date_format($date, 'Y-m-d');
+                
                 require('View/candidat/edit.php'); 
+           
             } else {
-                header('location:index.php?action=index_candidat&msg=candidat_not_fetched');
+                header('location:index.php?action=index_candidat&event_id='.$event_id.'&msg=candidat_not_fetched');
             }
         }
 
-        public function update($id) {
+        public function update($id, $event_id) {
+            $_POST['event_id'] = $event_id;
             $candidat = $this->candidat->update($id, $_POST);
             if($candidat->execute()) {
-                header('location:index.php?action=show_candidat&id='.$id.'&msg=candidat_updated');
+                header('location:index.php?action=index_candidat&event_id='.$event_id.'&msg=candidat_updated');
             } else {
                 header('location:index.php?action=edit_candidat&id='.$id.'&msg=candidat_not_updated');
             }

@@ -24,7 +24,7 @@
 
         public function save() {
             // Impossible si le user n'est pas connecter
-            if (!isset($_SESSION['user'])) {
+            if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
                 header('location:index.php?action=create_event&msg=user_required');
             }
 
@@ -34,9 +34,9 @@
             }
             
             $event = $this->event->save($_POST);
-
             if($event->execute()) {
-                header('location:index.php?action=index_event&msg=event_created');
+                $event = $this->event->getLast();
+                header('location:index.php?action=index_candidat&event_id='.$event['id'].'&msg=event_created');
             } else {
                 header('location:index.php?action=create_event&msg=event_not_created');
             }
@@ -44,21 +44,19 @@
         }
 
         public function show($id) {
-            $result = $this->event->getById($id);
-            $result->execute();
+            $event = $this->event->getById($id);
 
-            if($event = $result->fetch()) {
-                require('View/event/show.php'); 
+            if(empty($event)) {
+                require('View/event/show.php');
             } else {
                 header('location:index.php?action=index_event&msg=event_not_fetched');
             }  
         }
 
         public function edit($id) {   
-            $result = $this->event->getById($id);
-            $result->execute();
+            $event = $this->event->getById($id);
 
-            if($event = $result->fetch()) {
+            if(!empty($event)) {
                 // Formatage de la date
                 $date = date_create($event['expire']);
                 $day = date_format($date, 'Y-m-d');
@@ -73,7 +71,7 @@
         public function update($id) {
             $event = $this->event->update($id, $_POST);
             if($event->execute()) {
-                header('location:index.php?action=show_event&id='.$id.'&msg=event_updated');
+                header('location:index.php?action=index_event&msg=event_updated');
             } else {
                 header('location:index.php?action=edit_event&id='.$id.'&msg=event_not_updated');
             }

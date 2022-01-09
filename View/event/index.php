@@ -48,57 +48,40 @@
         </thead>
         <tbody>
             <?php 
+            $n = 0;
             foreach ($events as $event) {
+              $n++;
                 // Formatage de la date
                 $date = date_create($event['expire']);
-                $date = date_format($date, 'd/m/Y:H:i');
+                $date = date_format($date, 'd/m/Y');
+                $today = date('d/m/Y');
+                
+                if($today <= $date) {
+                  $etat = true;
+                } else {
+                  $etat = false;
+                }
             ?>
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><?= $n ?></th>
                     <td><?= $event['titre'] ?></td>
                     <td><?= $event['categorie'] ?></td>
                     <td><?= $date ?></td>
                     <td class="icon">
-                    <a href="index.php?action=show_event&id=<?= $event['id'] ?>">
+                    <a href="index.php?action=index_candidat&event_id=<?= $event['id'] ?>">
                         <i class="far fa-eye fa-2x"></i>
                     </a>
                     </td>
-                    <td><button class="btn btn-success">En cours</button></td>
+                    <?php if($etat) { ?>
+                      <td><button class="btn btn-success">En cours</button></td>
+                    <?php } else {?>
+                      <td><button class="btn btn-warning">Terminer</button></td>
+                    <?php } ?>
                     <td class="actions">
                     <a class="actions" href="index.php?action=edit_event&id=<?= $event['id'] ?>">Modifier</a>
                     </td>
                 </tr>
             <?php } ?>
-          <tr>
-            <th scope="row">2</th>
-            <td>Nappy Afrique</td>
-            <td>Concours facebook et instagram</td>
-            <td>06/06/2021</td>
-            <td class="icon">
-              <a href="list-participants.html"
-                ><i class="far fa-eye fa-2x"></i
-              ></a>
-            </td>
-            <td><button class="btn btn-warning">Terminer</button></td>
-            <td class="actions">
-              <a class="actions" href="edit-event.html">Modifier</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Copywriter awards</td>
-            <td>Sondage instagram</td>
-            <td>19/05/2022</td>
-            <td class="icon">
-              <a href="list-participants.html"
-                ><i class="far fa-eye fa-2x"></i
-              ></a>
-            </td>
-            <td><button class="btn btn-success">En cours</button></td>
-            <td class="actions">
-              <a class="actions" href="edit-event.html">Modifier</a>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>

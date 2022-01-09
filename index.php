@@ -41,19 +41,19 @@
 
 //////////////////////////// CandidatController //////////////////////////////////        
         case  'index_candidat':
-            $candidat->index();
+            $candidat->index($_GET['event_id']);
             break;
         case  'create_candidat':
-            $candidat->create();
+            $candidat->create($_GET['event_id']);
             break;
         case  'save_candidat':
-            $candidat->save();
+            $candidat->save($_GET['event_id']);
             break;
         case  'edit_candidat':
             $candidat->edit($_GET['id']);
             break;
         case  'update_candidat':
-            $candidat->update($_GET['id']);
+            $candidat->update($_GET['id'], $_GET['event_id']);
             break;
         case  'show_candidat':
             $candidat->show($_GET['id']);
