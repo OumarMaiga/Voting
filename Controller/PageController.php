@@ -2,20 +2,22 @@
 
     namespace Controller;
 
-    use Model\Auth;
+    use Model\Event;
     use Model\User;
 
     class PageController {
         
-        private $auth;
+        private $event;
         private $user;
         
         public function __construct() {
-            $this->auth = new Auth;
+            $this->event = new Event;
             $this->user = new User;
         }
 
         public function accueil() {
+            $events = $this->event->getAll();
+
             require('View/page/accueil.php');
         }        
     }

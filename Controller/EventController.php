@@ -3,14 +3,17 @@
     namespace Controller;
 
     use Model\Event;
+    use Model\Candidat;
 
     class EventController {
         
 
         private $event;
+        private $candidat;
         
         public function __construct() {
             $this->event = new Event;
+            $this->candidat = new Candidat;
         }
 
         public function index() {
@@ -45,8 +48,11 @@
 
         public function show($id) {
             $event = $this->event->getById($id);
+            $date = date_create($event['expire']);
+            $date = date_format($date, 'd/m/Y');
 
-            if(empty($event)) {
+            if(!empty($event)) {
+                $candidats = $this->candidat->getBy('event_id', $event['id']);
                 require('View/event/show.php');
             } else {
                 header('location:index.php?action=index_event&msg=event_not_fetched');

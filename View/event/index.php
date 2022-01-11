@@ -14,7 +14,7 @@
     crossorigin="anonymous"/>
     <title>Online Voting - Admin</title>
 </head>
-<body>
+<body onload="openSection(event, 'Event')">
 
     <h1 class="page-title">Espace administrateur</h1>
 
