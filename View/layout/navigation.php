@@ -5,9 +5,12 @@
     <?php
       if(isset($_SESSION['user'])) {
     ?>
-        <a
-          class="btn btn-danger"
-          href="index.php?action=logout">Deconnexion</a>
+      <a
+        class="nav-link text-white"
+        href="index.php?action=index_event">Tableau de bord</a>
+      <a
+        class="btn btn-danger"
+        href="index.php?action=logout">Deconnexion</a>
     <?php
         } else {
     ?>

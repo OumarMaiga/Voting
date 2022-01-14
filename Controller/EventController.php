@@ -4,16 +4,19 @@
 
     use Model\Event;
     use Model\Candidat;
+    use ImageUploader;
 
     class EventController {
         
 
         private $event;
         private $candidat;
+        private $image;
         
         public function __construct() {
             $this->event = new Event;
             $this->candidat = new Candidat;
+            $this->image = new ImageUploader;
         }
 
         public function index() {
@@ -34,6 +37,28 @@
             // Impossible si les champs obligatoire ne sont pas remplis
             if((!isset($_POST['titre']) || $_POST['titre'] == "") || (!isset($_POST['expire']) || $_POST['expire'] == "")) {
                 header('location:index.php?action=create_event&msg=field_required');
+            }
+            // Upload d'image
+            if (isset($_FILES['image'])) {
+                $folder = "public/upload/image/event/";
+
+                // On execute la fonction de traitement de l'image
+                $response = $this->image->upload($_FILES, $folder);
+
+                // Verification de l'extension et de la taille du fichier
+                if ($response['error'] == true) {
+                    if ($response['msg'] == "image_ext") {
+                        header('location:index.php?action=create_event&msg=image_ext');
+                    }
+                    if ($response['msg'] == "image_file_size") {
+                        header('location:index.php?action=create_event&msg=image_file_size');
+                    }
+                    if ($response['msg'] == "image_upload_failed") {
+                        header('location:index.php?action=create_event&msg=image_upload_failed');
+                    }
+                } else {
+                    $_POST['image'] = $response['url'];
+                }
             }
             
             $event = $this->event->save($_POST);
@@ -75,6 +100,28 @@
         }
 
         public function update($id) {
+            // Upload d'image
+            if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
+                $folder = "public/upload/image/event/";
+                
+                // On execute la fonction de traitement de l'image
+                $response = $this->image->upload($_FILES, $folder);
+
+                // Verification de l'extension et de la taille du fichier
+                if ($response['error'] == true) {
+                    if ($response['msg'] == "image_ext") {
+                        header('location:index.php?action=update_event&msg=image_ext');
+                    }
+                    if ($response['msg'] == "image_file_size") {
+                        header('location:index.php?action=update_event&msg=image_file_size');
+                    }
+                    if ($response['msg'] == "image_upload_failed") {
+                        header('location:index.php?action=update_event&msg=image_upload_failed');
+                    }
+                } else {
+                    $_POST['image'] = $response['url'];
+                }
+            }
             $event = $this->event->update($id, $_POST);
             if($event->execute()) {
                 header('location:index.php?action=index_event&msg=event_updated');

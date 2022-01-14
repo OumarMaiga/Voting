@@ -54,47 +54,29 @@
       </div>
       <div class="container mt-4">
         <h4>Voter pour votre candidat favori</h4>
-        <table class="table table-hover mt-4">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col"></th>
-              <th scope="col">Prénom</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Genre</th>
-              <th scope="col">Votes</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php 
-            $n = 0;
+        <div class="row row-cols-1 row-cols-md-5 g-4 mt-2">
+          <?php 
             foreach ($candidats as $candidat) {
-                $n++;
-            ?>
-            <tr>
-              <th scope="row"><?= $n ?></th>
-              <td>
-                <div class="img-fluid">
-                  <img src="public/image/avatar.jpg" alt="" class="avatar" />
+          ?>
+            <div class="col">
+              <div class="card">
+                <img src="public/image/avatar.jpg" class="card-img-top" alt="" />
+                <div class="card-body">
+                  <h5 class="card-title"><?= $candidat['prenom']." ".$candidat['nom'] ?></h5>
+                  <p class="small-text">1147 votes</p>
+                  <a
+                    class="btn btn-outline-danger"
+                    data-micromodal-trigger="modal-2"
+                    href="javascript:void(0);"
+                    >Voter</a
+                  >
                 </div>
-              </td>
-              <td><?= $candidat['prenom'] ?></td>
-              <td><?= $candidat['nom'] ?></td>
-              <td><?= genre($candidat['genre']) ?></td>
-              <td><?= $candidat['prenom'] ?></td>
-              <td class="actions">
-                <a
-                  class="btn btn-outline-danger"
-                  data-micromodal-trigger="modal-2"
-                  href="javascript:void(0);"
-                  >Voter</a>
-              </td>
-            </tr>
-            <?php } ?>
-          </tbody>
-        </table>
+              </div>
+            </div>
+          <?php } ?>
+        </div>
       </div>
+
     </div>
 
     <!-- Login Modal -->
