@@ -8,12 +8,14 @@
     use Controller\CandidatController;
     use Controller\EventController;
     use Controller\PageController;
+    use Controller\VoteController;
     
     $auth = new AuthController;
     $user = new UserController;
     $page = new PageController;
     $candidat = new CandidatController;
     $event = new EventController;
+    $vote = new VoteController;
 
     if(isset($_GET['action'])) {
         $action = $_GET['action'];
@@ -83,6 +85,11 @@
             break;
         case  'delete_event':
             $event->delete($_GET['id']);
+            break;
+            
+//////////////////////////// VoteController //////////////////////////////////
+        case  'save_vote':
+            $vote->save($_GET['event_id'], $_GET['candidat_id']);
             break;
         
         default:

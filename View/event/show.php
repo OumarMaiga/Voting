@@ -65,7 +65,8 @@
                   <h5 class="card-title"><?= $candidat['prenom']." ".$candidat['nom'] ?></h5>
                   <p class="small-text">1147 votes</p>
                   <a
-                    class="btn btn-outline-danger"
+                    id="<?= $candidat['id'] ?>"
+                    class="btn btn-outline-danger btn-vote"
                     data-micromodal-trigger="modal-2"
                     href="javascript:void(0);"
                     >Voter</a
@@ -83,62 +84,7 @@
     <?php include('View/layout/login.php') ?>
 
     <!-- Vote Modal -->
-    <div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
-      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div
-          class="modal__container"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-1-title"
-        >
-          <header class="modal__header">
-            <h2 class="modal__title" id="modal-1-title">Vote ton candidat</h2>
-            <button
-              class="modal__close"
-              aria-label="Close modal"
-              data-micromodal-close
-            ></button>
-          </header>
-          <form action="" method="" id="login-form">
-            <main class="modal__content" id="modal-1-content">
-              <p>
-                Vote ton candidat en lui attribuant des points et participe à sa
-                victoire.
-              </p>
-
-              <div class="mb-3">
-                <label for="point" class="form-label"
-                  >Donner des points au candidat</label
-                >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="point"
-                  name="point"
-                  autocomplete="off"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="prix" class="form-label">Prix à payer</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="prix"
-                  name="prix"
-                  placeholder="200 Fcfa"
-                  disabled
-                />
-              </div>
-            </main>
-          </form>
-          <footer class="modal__footer">
-            <a href="pages/admin-panel.html">
-              <button class="modal__btn modal__btn-primary">Valider</button>
-            </a>
-          </footer>
-        </div>
-      </div>
-    </div>
+    <?php include('View/layout/vote.php') ?>
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script>
@@ -148,6 +94,27 @@
         .addEventListener("submit", function submitHandle(e) {
           e.preventDefault();
         }); */
+        var candidat_id = 0;
+        var btnVote = document.getElementsByClassName('btn-vote');
+        for(let i = 0; i < btnVote.length; i++) {
+          btnVote[i].addEventListener("click", function(e) {
+            console.log("Clicked index: " + i);
+            candidat_id = e.target.id;
+            console.log("candidat: "+candidat_id);
+            document.getElementById('vote-form').action = "index.php?action=save_vote&event_id=<?= $event['id'] ?>&candidat_id="+candidat_id;
+            var action = document.getElementById('vote-form').getAttribute('action');
+            console.log("action: "+action);
+          })
+        }
+       
+      // Changement de prix en fonction du point
+      var point_dom = document.getElementById('point');
+      var prix_dom = document.getElementById('prix');
+      point_dom.addEventListener('input', (e) => {
+        var prix = e.target.value * 200;
+        prix_dom.value = prix+" Fcfa";
+      });
+
     </script>
   </body>
 </html>
