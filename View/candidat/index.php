@@ -45,22 +45,27 @@
             <th scope="col">Prénom</th>
             <th scope="col">Nom</th>
             <th scope="col">Genre</th>
-            <th scope="col">Votes</th>
+            <th scope="col">Vote</th>
+            <th scope="col">Point</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-            <?php 
+            <?php
             $n = 0;
             foreach ($candidats as $candidat) {
                 $n++;
+                // Utilisation du helper pour recuperer le nombre de vote et point et aussi le genre (homme/femme)
+                $vote_count = vote_count($event['id'], $candidat['id']);
+                $point_count = point_count($event['id'], $candidat['id']);
             ?>
                 <tr>
                     <th scope="row"><?= $n ?></th>
                     <td><?= $candidat['prenom'] ?></td>
                     <td><?= $candidat['nom'] ?></td>
                     <td><?= genre($candidat['genre']) ?></td>
-                    <td><?= $candidat['prenom'] ?></td>
+                    <td><?= $vote_count ?></td>
+                    <td><?= $point_count == "" ? "0" : $point_count ?></td>
                     <td class="actions">
                     <a class="actions" href="index.php?action=edit_candidat&id=<?= $candidat['id'] ?>">Modifier</a>
                     </td>

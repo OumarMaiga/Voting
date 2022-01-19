@@ -27,4 +27,16 @@
             return $req->fetchAll();
         }
 
+        public function getCandidatVoteCount($event_id, $candidat_id) {
+            $req = $this->db->query('SELECT COUNT(*) AS vote_count from votes WHERE candidat_id = '.$candidat_id.' && event_id = '.$event_id);
+            $data = $req->fetch();
+            return $data['vote_count'];
+        }
+
+        public function getCandidatPointCount($event_id, $candidat_id) {
+            $req = $this->db->query('SELECT SUM(point) AS point_count from votes WHERE candidat_id = '.$candidat_id.' && event_id = '.$event_id);
+            $data = $req->fetch();
+            return $data['point_count'];
+        }
+
     }

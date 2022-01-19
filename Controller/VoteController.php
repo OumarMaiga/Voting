@@ -5,8 +5,8 @@
     use Model\Vote;
 
     class VoteController {
-        
 
+        
         private $vote;
         
         public function __construct() {
