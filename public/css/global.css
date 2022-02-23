@@ -29,3 +29,9 @@
 .add-btn {
   margin-left: 15px;
 }
+
+#myToastEl {
+  opacity: 1;
+  position: fixed;
+  bottom: 10px;
+}

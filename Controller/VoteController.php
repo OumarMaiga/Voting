@@ -3,14 +3,17 @@
     namespace Controller;
 
     use Model\Vote;
+    use API\Wizall;
 
     class VoteController {
 
         
         private $vote;
+        private $wizall;
         
         public function __construct() {
             $this->vote = new Vote;
+            $this->wizall = new Wizall;
         }
 
         public function index() {
@@ -28,14 +31,23 @@
             $_POST['prix'] = (int) filter_var($_POST['prix'], FILTER_SANITIZE_NUMBER_INT); 
             $_POST['event_id'] = $event_id;
             $_POST['candidat_id'] = $candidat_id;
-            $vote = $this->vote->save($_POST);
-            if($vote->execute()) {
-                header('location:index.php?action=show_event&id='.$event_id.'&msg=vote_created');
-            } else {
-                header('location:index.php?action=show_event&id='.$event_id.'&msg=event_not_created');
+
+            $paiement = $this->wizall->paiement();
+
+            if($paiement['success']) 
+            {
+                $vote = $this->vote->save($_POST);
+                if($vote->execute()) {
+                    header('location:index.php?action=show_event&id='.$event_id.'&msg=vote_created');
+                } else {
+                    header('location:index.php?action=show_event&id='.$event_id.'&msg=vote_not_created');
+                }
+            } 
+            else
+            {
+                header('location:index.php?action=show_event&id='.$event_id.'&msg=paiement_not_valid');
             }
 
         }
-
         
     }
