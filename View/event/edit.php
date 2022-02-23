@@ -16,6 +16,9 @@
     <title>Online Voting - Admin</title>
   </head>
   <body onload="openSection(event, 'Event')">
+    
+  <?php include('View/layout/navigation.php') ?>
+
     <h1 class="page-title">Espace administrateur</h1>
 
     <!-- Tab links -->
@@ -43,12 +46,7 @@
           </div>
           <div class="col-md-4">
             <label for="categorie" class="form-label">Catégorie</label>
-            <select id="categorie" name="categorie" class="form-select">
-              <option selected>Choisir...</option>
-
-              <option value="">Concours Facebook</option>
-              <option value="">Campagne Instagram</option>
-            </select>
+            <input type="text" class="form-control" name="categorie" id="categorie" value="<?= $event['categorie'] ?>"/>
           </div>
           <div class="col-md-4">
             <label for="expire_date" class="form-label">Fin de campagne</label>

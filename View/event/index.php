@@ -15,7 +15,7 @@
     <title>Online Voting - Admin</title>
 </head>
 <body onload="openSection(event, 'Event')">
-
+    <?php include('View/layout/navigation.php') ?>
     <h1 class="page-title">Espace administrateur</h1>
 
     <!-- Tab links -->

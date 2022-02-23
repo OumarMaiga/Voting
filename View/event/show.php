@@ -65,7 +65,7 @@
                 <img src="public/image/avatar.jpg" class="card-img-top" alt="" />
                 <div class="card-body">
                   <h5 class="card-title"><?= $candidat['prenom']." ".$candidat['nom'] ?></h5>
-                  <p class="small-text"><?= $points ?> point(s)</p>
+                  <p class="small-text"><?= ($points > 0) ? $points : "0" ?> point(s)</p>
                   <a
                     id="<?= $candidat['id'] ?>"
                     class="btn btn-outline-danger btn-vote"
@@ -82,7 +82,7 @@
 
       <!-- Messages -->
       <?php
-          if($msg = $_GET['msg']) {
+          if(isset($_GET['msg']) && $msg = $_GET['msg']) {
             if ($msg === "vote_created") {
               $msgText = "Bravo ! &nbsp; Votre vote à bien été enregistré";
               $bgColor = " bg-success";
