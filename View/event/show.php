@@ -26,11 +26,11 @@
       <div class="row mt-4">
         <div class="col-6">
           <div class="card">
-            <img
-              src="public/image/south-african-tourism.jpg"
-              class="card-img-top rounded"
-              alt=""
-            />
+            <?php if($event['image'] == NULL) { ?>
+              <img src="public/image/south-african-tourism.jpg" class="card-img-top rounded" alt="" id="show-event-img"/>
+            <?php } else { ?>
+              <img src="<?= $event['image'] ?>" class="card-img-top rounded" alt="" id="show-event-img"/>
+            <?php } ?>
           </div>
         </div>
         <div class="col-6">
@@ -55,14 +55,18 @@
       </div>
       <div class="container mt-4">
         <h4>Voter pour votre candidat favori</h4>
-        <div class="row row-cols-1 row-cols-md-5 g-4 mt-2">
+        <div class="row row-cols-1 row-cols-md-5 g-4 mt-2 mb-4">
           <?php 
             foreach ($candidats as $candidat) {
               $points = point_count($event['id'], $candidat['id']);
           ?>
             <div class="col">
               <div class="card">
-                <img src="public/image/avatar.jpg" class="card-img-top" alt="" />
+                <?php if($candidat['image'] == NULL) { ?>
+                  <img src="public/image/avatar.jpg" class="card-img-top" alt="" id="show-candidat-img"/>
+                <?php } else { ?>
+                  <img src="<?= $candidat['image'] ?>" class="card-img-top rounded" alt="" id="show-candidat-img"/>
+                <?php } ?>
                 <div class="card-body">
                   <h5 class="card-title"><?= $candidat['prenom']." ".$candidat['nom'] ?></h5>
                   <p class="small-text"><?= ($points > 0) ? $points : "0" ?> point(s)</p>

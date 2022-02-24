@@ -66,7 +66,7 @@
               accept=".jpg, .jpeg, .png"
             />
           </div>
-          <div class="col-md-6">
+          <!--<div class="col-md-6">
             <label for="video" class="form-label">Video marketing</label>
             <input
               type="file"
@@ -75,7 +75,7 @@
               id="video"
               accept=".mp4, .flv, .mpeg"
             />
-          </div>
+          </div>-->
           <div class="col-md-12">
             <label for="description" class="form-label">Description</label>
             <textarea

@@ -46,7 +46,7 @@
       </div>
       
       <h5 class="content mt-4">Toutes les campagnes</h5>  
-      <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
+      <div class="row row-cols-1 row-cols-md-4 g-4 mt-2 mb-4">
         <?php
           foreach ($events as $event) {
             $date = date_create($event['expire']);
@@ -54,10 +54,14 @@
         ?>
         <div class="col">
           <div class="card">
-            <img src="public/image/miss-nappy.jpg" class="card-img-top" alt="">
+            <?php if($event['image'] == NULL) { ?>
+              <img src="public/image/miss-nappy.jpg" class="card-img-top" alt="" id="home-event-img">
+            <?php } else { ?>
+              <img src="<?= $event['image'] ?>" class="card-img-top" alt="" id="home-event-img">
+            <?php } ?>
             <div class="card-body">
               <h5 class="card-title"><?= $event['titre'] ?></h5>
-              <p class="card-text"><?= $event['description'] ?></p>
+              <p class="card-text"><?= substr($event['description'], 0, 100); ?> <?= (strlen($event['description']) > 100) ? " ..." : "" ?></p>
               <p class="small-text text-danger">Date de fin: <?= $date ?></p>
               <a class="btn btn-danger"
               href="index.php?action=show_event&id=<?= $event['id'] ?>">Détails</a>
