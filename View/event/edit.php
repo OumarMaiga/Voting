@@ -69,6 +69,16 @@
               value="<?= $event['image'] ?>"
             />
           </div>
+          <div class="col-md-6">
+            <label for="video" class="form-label">Video marketing (lien)</label>
+            <input
+              type="text"
+              class="form-control"
+              name="video"
+              id="video"
+              value="<?= $event['video'] ?>"
+            />
+          </div>
           <!--<div class="col-md-6">
             <label for="video" class="form-label">Video marketing</label>
             <input
