@@ -79,17 +79,6 @@
               value="<?= $event['video'] ?>"
             />
           </div>
-          <!--<div class="col-md-6">
-            <label for="video" class="form-label">Video marketing</label>
-            <input
-              type="file"
-              class="form-control"
-              name="video"
-              id="video"
-              accept=".mp4, .flv, .mpeg"
-              value="<?= $event['video'] ?>"
-            />
-          </div>-->
           <div class="col-md-12">
             <label for="description" class="form-label">Description</label>
             <textarea
@@ -105,6 +94,9 @@
         </form>
       </div>
     </div>
+        
+    <!-- Messages -->
+    <?php include('View/layout/message.php') ?>
 
     <script src="public/js/tabs.js"></script>
   </body>

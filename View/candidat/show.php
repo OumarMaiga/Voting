@@ -11,5 +11,8 @@
     <h3><?= $candidat['prenom']." ".$candidat['nom'] ?></h3>
     <a href="index.php?action=edit_candidat&id=<?= $candidat['id'] ?>">Modifier</a>
     <a href="index.php?action=delete_candidat&id=<?= $candidat['id'] ?>">Supprimer</a>
+        
+    <!-- Messages -->
+    <?php include('View/layout/message.php') ?>
 </body>
 </html>

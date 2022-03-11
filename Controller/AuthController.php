@@ -24,6 +24,11 @@
                 $request = $this->auth->authenticate($inputs);
                 $request->execute();
                 
+                $previous = "javascript:history.go(-1)";
+                if(isset($_SERVER['HTTP_REFERER'])) {
+                    $previous = $_SERVER['HTTP_REFERER'];
+                }
+
                 if($data = $request->fetch()) {
                     
                     $_SESSION['user'] = $data;
@@ -31,10 +36,11 @@
                     header('location:index.php?action=accueil');
                 
                 } else {
-                    header('location:index.php?action=login&msg=not_found');
+                    //$url = preg_replace('/msg=*/', 'msg=login_not_found', $previous);
+                    header('location:index.php?action=login&msg=login_not_found');
                 }
             } else {
-                header('location:index.php?action=login&msg=empty');
+                header('location:index.php?action=login&msg=field_required');
             }
         }
         

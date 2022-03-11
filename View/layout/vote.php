@@ -31,7 +31,9 @@
                     id="point"
                     name="point"
                     autocomplete="off"
-                    value="1"
+                    value="10"
+                    step="10"
+                    min="10"
                 />
                 </div>
                 <div class="mb-3">
@@ -45,9 +47,26 @@
                     readOnly=""
                 />
                 </div>
+                <div class="mb-3">
+                <label for="paiement_mode" class="form-label">Moyen de paiment</label>
+                <select class="form-select" aria-label="Default select example" name="paiement_mode">
+                    <option selected value="">-- Choisissez --</option>
+                    <option value="orange_money">Orange money</option>
+                    <option value="wizall">Wizall</option>
+                    <option value="mobicash">MobiCash</option>
+                    <option value="wave">Wave</option>
+                </select>
+                </div>
             </main>
             <footer class="modal__footer">
-                <input type="submit" class="modal__btn modal__btn-primary" value="Valider"/>
+                <input type="submit" class="modal__btn modal__btn-primary" value="Payez"/>
+
+                <div class="paiement-logo-container">
+                    <img src="public/image/orange_money.png" class="paiement-logo" alt="">
+                    <img src="public/image/wizall.jpg" class="paiement-logo" alt="">
+                    <img src="public/image/mobicash.png" class="paiement-logo" alt="">
+                    <img src="public/image/wave.png" class="paiement-logo" alt="">
+                </div>
             </footer>
         </form>
     </div>

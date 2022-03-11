@@ -16,20 +16,24 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <title>Online Voting</title>
   </head>
   <body>
     <?php include('View/layout/navigation.php') ?>
-    <div class="container content">
+    <div class="container content mt-4">
       <h2><?= $event['titre'] ?></h2>
       <div class="row mt-4">
         <div class="col-6">
           <div class="card">
-            <?php if($event['image'] == NULL) { ?>
-              <img src="public/image/south-african-tourism.jpg" class="card-img-top rounded" alt="" id="show-event-img"/>
-            <?php } else { ?>
+            <?php if($event['video'] != NULL) { ?>
+            <iframe height="260" src="<?= $event['video'] ?>" 
+              title="YouTube video player" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+            <?php } else if($event['image'] != NULL) { ?>
               <img src="<?= $event['image'] ?>" class="card-img-top rounded" alt="" id="show-event-img"/>
+            <?php } else { ?>
+              <img src="public/image/south-african-tourism.jpg" class="card-img-top rounded" alt="" id="show-event-img"/>
             <?php } ?>
           </div>
         </div>
@@ -83,34 +87,9 @@
           <?php } ?>
         </div>
       </div>
-
-      <!-- Messages -->
-      <?php
-          if(isset($_GET['msg']) && $msg = $_GET['msg']) {
-            if ($msg === "vote_created") {
-              $msgText = "Bravo ! &nbsp; Votre vote à bien été enregistré";
-              $bgColor = " bg-success";
-            }else if ($msg === "vote_not_created") {
-              $msgText = "Erreur ! &nbsp; Enregistrement de vote incorrect";
-              $bgColor = " bg-danger";
-            }else if ($msg === "paiement_not_valid") {
-              $msgText = "Erreur ! &nbsp; Paiement invalid";
-              $bgColor = " bg-danger";
-            } else {
-              $msgText = "";
-              $bgColor = " bg-secondary";
-            }
-      ?>
-        <div class="toast align-items-center text-white <?= $bgColor ?> border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false" id=myToastEl>
-          <div class="d-flex">
-            <div class="toast-body">
-              <?= $msgText ?>
-            </div>
-            <button type="button" id="toastBtn" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-        </div>
-      <?php } ?>
     </div>
+    <!-- Messages -->
+    <?php include('View/layout/message.php') ?>
 
     <!-- Login Modal -->
     <?php include('View/layout/login.php') ?>
@@ -119,11 +98,11 @@
     <?php include('View/layout/vote.php') ?>
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script>
-      document.getElementById('toastBtn').addEventListener('click', function() {
-        document.getElementById('myToastEl').style.opacity = 0;
-      })
+      MicroModal.init();
+
       /* document
         .getElementById("login-form")
         .addEventListener("submit", function submitHandle(e) {
@@ -133,12 +112,9 @@
         var btnVote = document.getElementsByClassName('btn-vote');
         for(let i = 0; i < btnVote.length; i++) {
           btnVote[i].addEventListener("click", function(e) {
-            console.log("Clicked index: " + i);
             candidat_id = e.target.id;
-            console.log("candidat: "+candidat_id);
             document.getElementById('vote-form').action = "index.php?action=save_vote&event_id=<?= $event['id'] ?>&candidat_id="+candidat_id;
             var action = document.getElementById('vote-form').getAttribute('action');
-            console.log("action: "+action);
           })
         }
        
@@ -146,10 +122,16 @@
       var point_dom = document.getElementById('point');
       var prix_dom = document.getElementById('prix');
       point_dom.addEventListener('input', (e) => {
-        var prix = e.target.value * 200;
+        var prix = e.target.value * 20;
         prix_dom.value = prix+" Fcfa";
       });
 
+        if (toastBtn = document.getElementById('toastBtn')) {
+          toastBtn.addEventListener('click', function() {
+            document.getElementById('myToastEl').style.opacity = 0;
+          })
+        }
+      
     </script>
   </body>
 </html>

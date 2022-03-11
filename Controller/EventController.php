@@ -80,7 +80,7 @@
                 $candidats = $this->candidat->getBy('event_id', $event['id']);
                 require('View/event/show.php');
             } else {
-                header('location:index.php?action=index_event&msg=event_not_fetched');
+                header('location:index.php?action=accueil&msg=event_not_fetched');
             }  
         }
 

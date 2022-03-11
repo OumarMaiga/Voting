@@ -21,31 +21,26 @@
   <body>
     <?php include('View/layout/navigation.php') ?>
     <div class="container mt-4">
-      <h2>Evènements & Campagnes</h3>
+      <h2 class="mt-2">Evènements & Campagnes</h2>
       <p>Voter pour vos candidats favoris et permetter leur de gagner !</p>
       <h5 class="partners">Nos Partenaires</h5>
       <div class="brand-carousel section-padding owl-carousel">
         <div class="single-logo">
-          <img src="https://i.postimg.cc/QxPJ8hXy/brand-1.png" alt="">
+          <img src="public/image/larcom.jpeg" class="logo-partenaire" alt="">
         </div>
-      <div class="single-logo">
-          <img src="https://i.postimg.cc/pdMQjC5Q/brand-2.png" alt="">
+        <div class="single-logo">
+          <img src="public/image/mali-emblem.png" class="logo-partenaire" alt="">
         </div>
-      <div class="single-logo">
-          <img src="https://i.postimg.cc/B6qxYvgX/brand-3.png" alt="">
+        <div class="single-logo">
+          <img src="public/image/prestige-consulting.jpg" class="logo-partenaire" alt="">
         </div>
-      <div class="single-logo">
-          <img src="https://i.postimg.cc/d14GzKHn/brand-4.png" alt="">
-        </div>
-      <div class="single-logo">
-          <img src="https://i.postimg.cc/x8ZM13Sz/brand-5.png" alt="">
-        </div>
-      <div class="single-logo">
-          <img src="https://i.postimg.cc/B6qxYvgX/brand-3.png" alt="">
+        <div class="single-logo">
+          <img src="public/image/ortm2.png" class="logo-partenaire" alt="">
         </div>
       </div>
       
-      <h5 class="content mt-4">Toutes les campagnes</h5>  
+      <h5 class="content mt-4">Toutes les campagnes</h5> 
+      <?php var_dump($_SESSION['vote']) ?> 
       <div class="row row-cols-1 row-cols-md-4 g-4 mt-2 mb-4">
         <?php
           foreach ($events as $event) {
@@ -71,6 +66,8 @@
         <?php } ?>
       </div>
     </div>
+    <!-- Messages -->
+    <?php include('View/layout/message.php') ?>
 
     <!-- Login Modal -->
     <?php include('View/layout/login.php') ?>

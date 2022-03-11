@@ -13,12 +13,12 @@
         }
 
         public function save(Array $inputs) {
-            
             $req = $this->db->prepare('INSERT INTO votes (point, prix, candidat_id, event_id, created_at)VALUES(:point, :prix, :candidat_id, :event_id, NOW())');
             $req->bindParam(':point', $inputs['point']);
             $req->bindParam(':prix', $inputs['prix']);
             $req->bindParam(':candidat_id', $inputs['candidat_id']);
             $req->bindParam(':event_id', $inputs['event_id']);
+            $req->execute();
             return $req;
         }
 

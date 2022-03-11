@@ -8,6 +8,7 @@
     use Controller\CandidatController;
     use Controller\EventController;
     use Controller\PageController;
+    use Controller\PaiementController;
     use Controller\VoteController;
     
     $auth = new AuthController;
@@ -16,6 +17,7 @@
     $candidat = new CandidatController;
     $event = new EventController;
     $vote = new VoteController;
+    $paiement = new PaiementController;
 
     if(isset($_GET['action'])) {
         $action = $_GET['action'];
@@ -39,6 +41,41 @@
 //////////////////////////// PageController //////////////////////////////////    
         case  'accueil':
             $page->accueil();
+            break;
+        case  'get_wizall_token_page':
+            $page->get_wizall_token_page();
+            break;
+        case  'orange_money_page':
+            $page->orange_money_page($_GET['event_id'], $_GET['candidat_id']);
+            break;
+        case  'wizall_page':
+            $page->wizall_page($_GET['event_id'], $_GET['candidat_id']);
+            break;
+        case  'wizall_confirm_page':
+            $page->wizall_confirm_page($_GET['event_id'], $_GET['candidat_id']);
+            break;
+        case  'mobicash_page':
+            $page->mobicash_page($_GET['event_id'], $_GET['candidat_id']);
+            break;
+        case  'wave_page':
+            $page->wave_page($_GET['event_id'], $_GET['candidat_id']);
+            break;
+
+//////////////////////////// PaiementController //////////////////////////////////    
+        case  'paiement_orange_money':
+            $paiement->paiement_orange_money();
+            break;
+        case  'paiement_wizall':
+            $paiement->paiement_wizall();
+            break;
+        case  'paiement_wizall_confirm':
+            $paiement->paiement_wizall_confirm();
+            break;
+        case  'paiement_mobicash':
+            $paiement->paiement_mobicash();
+            break;
+        case  'paiement_wave':
+            $paiement->paiement_wave();
             break;
 
 //////////////////////////// CandidatController //////////////////////////////////        
@@ -86,12 +123,12 @@
         case  'delete_event':
             $event->delete($_GET['id']);
             break;
-            
-//////////////////////////// VoteController //////////////////////////////////
+
+//////////////////////////// VoteController //////////////////////////////////        
         case  'save_vote':
-            $vote->save($_GET['event_id'], $_GET['candidat_id']);
+            $vote->save_vote($_GET['event_id'], $_GET['candidat_id']);
             break;
-        
+                      
         default:
             $page->accueil();
     }

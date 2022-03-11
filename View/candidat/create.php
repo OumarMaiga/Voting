@@ -90,6 +90,9 @@
         </form>
       </div>
     </div>
+        
+    <!-- Messages -->
+  <?php include('View/layout/message.php') ?>
 
     <script src="public/js/tabs.js"></script>
   </body>
