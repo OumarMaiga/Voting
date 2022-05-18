@@ -35,7 +35,7 @@
             
             $_SESSION['vote']['agent_pin'] = "1001";
             $_SESSION['vote']['agent_number'] = "707511503";
-            $_SESSION['vote']['token'] = "A7QL6fqN9Z0XDN1q7Wjw2giXLR6TlN";
+            $_SESSION['vote']['token'] = "jrl95m5V1ZcPVcOIc43zeiRaCu17WJ";
             $_SESSION['vote']['client_number'] = $_POST['client_number'];
 
             $search_user = $this->wizall->search_user();

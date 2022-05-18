@@ -16,7 +16,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>Online Voting - Admin</title>
+    <title>Click event - Admin</title>
   </head>
   <body onload="openSection(event, 'Event')">
     
@@ -50,7 +50,7 @@
             <th scope="col">Genre</th>
             <th scope="col">Vote</th>
             <th scope="col">Point</th>
-            <th scope="col">Actions</th>
+            <!--<th scope="col">Actions</th>-->
           </tr>
         </thead>
         <tbody>
@@ -69,9 +69,9 @@
                     <td><?= genre($candidat['genre']) ?></td>
                     <td><?= $vote_count ?></td>
                     <td><?= $point_count == "" ? "0" : $point_count ?></td>
-                    <td class="actions">
+                    <!--<td class="actions">
                     <a class="actions" href="index.php?action=edit_candidat&id=<?= $candidat['id'] ?>">Modifier</a>
-                    </td>
+                    </td>-->
                 </tr>
             <?php } ?>
         </tbody>

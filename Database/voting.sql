@@ -44,18 +44,18 @@ CREATE TABLE `candidats` (
 --
 
 INSERT INTO `candidats` (`id`, `prenom`, `nom`, `image`, `user_id`, `event_id`, `date_naissance`, `genre`, `created_at`) VALUES
-(7, 'Jerom SEGOU', 'Dembele', 'public/upload/image/candidat/1645731550.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:39:10.000000'),
-(8, 'Seydou', 'Kone BGOUNI', 'public/upload/image/candidat/1645732434.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:52:50.000000'),
-(9, 'Boubacar', 'Diallo MOPTI', 'public/upload/image/candidat/1645732466.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:54:26.000000'),
-(10, 'Moussa', 'Sinaba KOULIKORO', 'public/upload/image/candidat/1645732520.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:55:20.000000'),
-(11, 'Famory', 'Sinaba SIBY', 'public/upload/image/candidat/1645732574.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:56:14.000000'),
-(12, 'Guimbala', 'Keita KITA', 'public/upload/image/candidat/1645732630.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:57:10.000000'),
-(13, 'Bamane', 'Doumbia BAMAKO', 'public/upload/image/candidat/1645732719.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:58:39.000000'),
-(14, 'Josephine', 'Thera SAN', 'public/upload/image/candidat/1645732748.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 19:59:08.000000'),
-(15, 'Sanaba', 'Fofana KAYES', 'public/upload/image/candidat/1645732825.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 20:00:25.000000'),
-(16, 'Amidou', 'Drabo SIKASSO', 'public/upload/image/candidat/1645732864.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:01:04.000000'),
-(17, 'Boubacar', 'Diallo GAO', 'public/upload/image/candidat/1645732934.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:02:14.000000'),
-(18, 'Cheibane', 'Baby TOMBOUCTOU', 'public/upload/image/candidat/1645732991.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:03:11.000000');
+(1, 'Jerom', 'Dembele SEGOU', 'public/upload/image/candidat/1645731550.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:39:10.000000'),
+(2, 'Seydou', 'Kone BGOUNI', 'public/upload/image/candidat/1645732434.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:52:50.000000'),
+(3, 'Boubacar', 'Diallo MOPTI', 'public/upload/image/candidat/1645732466.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:54:26.000000'),
+(4, 'Moussa', 'Sinaba KOULIKORO', 'public/upload/image/candidat/1645732520.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:55:20.000000'),
+(5, 'Famory', 'Sinaba SIBY', 'public/upload/image/candidat/1645732574.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:56:14.000000'),
+(6, 'Guimbala', 'Keita KITA', 'public/upload/image/candidat/1645732630.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:57:10.000000'),
+(7, 'Bamane', 'Doumbia BAMAKO', 'public/upload/image/candidat/1645732719.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:58:39.000000'),
+(8, 'Josephine', 'Thera SAN', 'public/upload/image/candidat/1645732748.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 19:59:08.000000'),
+(9, 'Sanaba', 'Fofana KAYES', 'public/upload/image/candidat/1645732825.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 20:00:25.000000'),
+(10, 'Amidou', 'Drabo SIKASSO', 'public/upload/image/candidat/1645732864.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:01:04.000000'),
+(11, 'Boubacar', 'Diallo GAO', 'public/upload/image/candidat/1645732934.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:02:14.000000'),
+(12, 'Cheibane', 'Baby TOMBOUCTOU', 'public/upload/image/candidat/1645732991.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:03:11.000000');
 
 -- --------------------------------------------------------
 

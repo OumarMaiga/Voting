@@ -42,6 +42,9 @@
         case  'accueil':
             $page->accueil();
             break;
+        case  'transactions':
+            $page->transactions();
+            break;
         case  'get_wizall_token_page':
             $page->get_wizall_token_page();
             break;

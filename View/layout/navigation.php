@@ -8,9 +8,12 @@
       <a
       class="nav-link text-white"
       href="index.php?action=index_event">Tableau de bord</a>
-      <!--<a
+      <a
         class="nav-link text-white"
-        href="index.php?action=get_wizall_token_page">Get Wizall Token</a>-->
+        href="index.php?action=get_wizall_token_page">Get Wizall Token</a>
+      <a
+        class="nav-link text-white"
+        href="index.php?action=transactions">Transaction</a>
       <a
         class="btn btn-danger"
         href="index.php?action=logout">Deconnexion</a>

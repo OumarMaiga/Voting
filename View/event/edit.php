@@ -13,7 +13,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>Online Voting - Admin</title>
+    <title>Click event - Admin</title>
   </head>
   <body onload="openSection(event, 'Event')">
     

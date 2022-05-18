@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
-    <title>Online Voting</title>
+    <title>Click event</title>
   </head>
   <body>
     <?php include('View/layout/navigation.php') ?>
@@ -40,7 +40,6 @@
       </div>
       
       <h5 class="content mt-4">Toutes les campagnes</h5> 
-      <?php var_dump($_SESSION['vote']) ?> 
       <div class="row row-cols-1 row-cols-md-4 g-4 mt-2 mb-4">
         <?php
           foreach ($events as $event) {

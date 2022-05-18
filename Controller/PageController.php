@@ -28,13 +28,23 @@
             require('View/page/accueil.php');
         }       
 
+        public function transactions() {
+            $events = $this->event->getAll();
+            $data = $this->wizall->transaction_list();
+
+            if(substr($data->status, 0, 1) == "2") {
+                require('View/page/transactions.php');
+                return false;
+            }
+            var_dump($transactions);
+            die();
+        }
+
         public function get_wizall_token_page() {
             $token = "";
             if (isset($_POST['token'])) 
             {
                 $get_token = $this->wizall->get_token();
-            var_dump($get_token);
-            die();
                 if(isset($get_token->access_token))
                 {
                     $token = $get_token->access_token;

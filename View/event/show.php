@@ -16,7 +16,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>Online Voting</title>
+    <title>Click event</title>
   </head>
   <body>
     <?php include('View/layout/navigation.php') ?>

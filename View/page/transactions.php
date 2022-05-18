@@ -22,64 +22,38 @@
     <div class="tab mt-2">
       <div class="">
         <button class="tablinks" onclick="openSection(event, 'Event')">
-          Campagnes
+          Transactions
         </button>
       </div>
     </div>
 
     <!-- Events list Tab content -->
     <div id="Event" class="tabcontent">
-      <a href="index.php?action=create_event">
-        <button class="btn btn-outline-primary add-btn">
-          <i class="fas fa-plus"></i> &nbsp;Créer nouvelle campagne
-        </button>
-      </a>
       <table class="table table-hover mt-4">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Titre</th>
-            <th scope="col">Catégorie</th>
-            <th scope="col">Expiration</th>
-            <th scope="col">Participants</th>
-            <th scope="col">Etat</th>
-            <th scope="col">Actions</th>
+            <th scope="col">N° du votant</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Date</th>
           </tr>
         </thead>
         <tbody>
             <?php 
             $n = 0;
-            foreach ($events as $event) {
+            foreach ($transactions as $transaction) {
               $n++;
                 // Formatage de la date
-                $date = date_create($event['expire']);
-                $date = date_format($date, 'd/m/Y');
+                $date = date_create($transaction['timestamp']);
+                $date = date_format($date, 'd-m-Y H:i');
                 $today = date('d/m/Y');
                 
-                if($today <= $date) {
-                  $etat = true;
-                } else {
-                  $etat = false;
-                }
             ?>
                 <tr>
                     <th scope="row"><?= $n ?></th>
-                    <td><?= $event['titre'] ?></td>
-                    <td><?= $event['categorie'] ?></td>
+                    <td><?= $transaction['sender'] ?></td>
+                    <td><?= $transaction['amount'] ?></td>
                     <td><?= $date ?></td>
-                    <td class="icon">
-                    <a href="index.php?action=index_candidat&event_id=<?= $event['id'] ?>">
-                        <i class="far fa-eye fa-2x"></i>
-                    </a>
-                    </td>
-                    <?php if($etat) { ?>
-                      <td><button class="btn btn-success">En cours</button></td>
-                    <?php } else {?>
-                      <td><button class="btn btn-warning">Terminer</button></td>
-                    <?php } ?>
-                    <td class="actions">
-                    <a class="actions" href="index.php?action=edit_event&id=<?= $event['id'] ?>">Modifier</a>
-                    </td>
                 </tr>
             <?php } ?>
         </tbody>
