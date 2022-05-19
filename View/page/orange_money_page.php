@@ -22,7 +22,7 @@
     <?php include('View/layout/navigation.php') ?>
     <div class="container mt-4">
       <h2>Orange money</h2>
-      <p>Payez maintenant !</p>
+      <p>Paiement non disponible !</p>
     </div>
 
     <!-- Login Modal -->

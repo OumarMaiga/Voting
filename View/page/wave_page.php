@@ -23,7 +23,7 @@
     <div class="container mt-4">
       <div class="col-md-6">
         <h2><?= $event['titre'] ?></h2>
-        <p>Payez maintenant !</p>
+      <p>Paiement non disponible !</p>
       </div>
     </div>
 

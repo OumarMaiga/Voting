@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 24 fév. 2022 à 21:05
+-- Généré le : jeu. 19 mai 2022 à 00:47
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.9
 
@@ -44,18 +44,18 @@ CREATE TABLE `candidats` (
 --
 
 INSERT INTO `candidats` (`id`, `prenom`, `nom`, `image`, `user_id`, `event_id`, `date_naissance`, `genre`, `created_at`) VALUES
-(1, 'Jerom', 'Dembele SEGOU', 'public/upload/image/candidat/1645731550.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:39:10.000000'),
-(2, 'Seydou', 'Kone BGOUNI', 'public/upload/image/candidat/1645732434.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:52:50.000000'),
-(3, 'Boubacar', 'Diallo MOPTI', 'public/upload/image/candidat/1645732466.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:54:26.000000'),
-(4, 'Moussa', 'Sinaba KOULIKORO', 'public/upload/image/candidat/1645732520.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:55:20.000000'),
-(5, 'Famory', 'Sinaba SIBY', 'public/upload/image/candidat/1645732574.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:56:14.000000'),
-(6, 'Guimbala', 'Keita KITA', 'public/upload/image/candidat/1645732630.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:57:10.000000'),
-(7, 'Bamane', 'Doumbia BAMAKO', 'public/upload/image/candidat/1645732719.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:58:39.000000'),
-(8, 'Josephine', 'Thera SAN', 'public/upload/image/candidat/1645732748.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 19:59:08.000000'),
-(9, 'Sanaba', 'Fofana KAYES', 'public/upload/image/candidat/1645732825.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 20:00:25.000000'),
-(10, 'Amidou', 'Drabo SIKASSO', 'public/upload/image/candidat/1645732864.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:01:04.000000'),
-(11, 'Boubacar', 'Diallo GAO', 'public/upload/image/candidat/1645732934.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:02:14.000000'),
-(12, 'Cheibane', 'Baby TOMBOUCTOU', 'public/upload/image/candidat/1645732991.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:03:11.000000');
+(7, 'Jerom', 'Dembele SEGOU', 'public/upload/image/candidat/1645731550.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:39:10.000000'),
+(8, 'Seydou', 'Kone BGOUNI', 'public/upload/image/candidat/1645732434.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:52:50.000000'),
+(9, 'Boubacar', 'Diallo MOPTI', 'public/upload/image/candidat/1645732466.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:54:26.000000'),
+(10, 'Moussa', 'Sinaba KOULIKORO', 'public/upload/image/candidat/1645732520.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:55:20.000000'),
+(11, 'Famory', 'Sinaba SIBY', 'public/upload/image/candidat/1645732574.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:56:14.000000'),
+(12, 'Guimbala', 'Keita KITA', 'public/upload/image/candidat/1645732630.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:57:10.000000'),
+(13, 'Bamane', 'Doumbia BAMAKO', 'public/upload/image/candidat/1645732719.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 19:58:39.000000'),
+(14, 'Josephine', 'Thera SAN', 'public/upload/image/candidat/1645732748.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 19:59:08.000000'),
+(15, 'Sanaba', 'Fofana KAYES', 'public/upload/image/candidat/1645732825.jpg', 1, 14, '2000-01-01', 'f', '2022-02-24 20:00:25.000000'),
+(16, 'Amidou', 'Drabo SIKASSO', 'public/upload/image/candidat/1645732864.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:01:04.000000'),
+(17, 'Boubacar', 'Diallo GAO', 'public/upload/image/candidat/1645732934.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:02:14.000000'),
+(18, 'Cheibane', 'Baby TOMBOUCTOU', 'public/upload/image/candidat/1645732991.jpg', 1, 14, '2000-01-01', 'h', '2022-02-24 20:03:11.000000');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `categorie`, `titre`, `description`, `expire`, `image`, `video`, `user_id`, `created_at`) VALUES
-(14, 'TELEREALITE (Saison 1)', 'LE COLIER SACRE DU ROYAUME', 'Le colier sacré du royaume est une téléréalité qui se deroule au MALI ...\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. ', '2022-03-31 00:00:00.000000', 'public/upload/image/event/1645731321.jpg', NULL, 1, '2022-02-24 19:35:21.000000');
+(14, 'TELEREALITE (Saison 1)', 'LE COLIER SACRE DU ROYAUME', 'Parmi les aventuriers de votre téléréalité \"LE COLLIER SACRE DU ROYAUME\" \r\nQui du S1  -S2- S3 - S4 - S5 - S6 - S7 - S8 - S9 - S10 - S11 - S12\r\nTrouvera le Collier Sacré de la Cohésion Sociale et de la Réconciliation Nationale pour la Paix et empocher la somme de: Deux millions de francs CFA (2 000 000 FCFA) ?', '2022-03-31 00:00:00.000000', 'public/upload/image/event/1645885843.jpg', 'https://www.youtube.com/embed/jSs33Sqrdao', 1, '2022-02-24 19:35:21.000000');
 
 -- --------------------------------------------------------
 
@@ -121,10 +121,6 @@ CREATE TABLE `votes` (
   `prix` int(11) DEFAULT NULL,
   `created_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Index pour les tables déchargées
---
 
 --
 -- Index pour la table `candidats`
@@ -176,7 +172,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
