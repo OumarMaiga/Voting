@@ -25,35 +25,39 @@
   </head>
   <body>
     <?php include('View/layout/navigation.php') ?>
-    <div class="d-flex">
-      <div class="col-md-6 paiement-left-container">      
-        <?php include('View/layout/paiement_left_layout.php') ?>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="paiement-left-container">
+          <?php include('View/layout/paiement_left_layout.php') ?>
+        </div>      
       </div>
       
-      <div class="col-md-6 paiement-right-container">
-        <h4 class="text-bold">Detail du paiement</h4>
-        <p id="text">Le paiement qui vous vous apprêtez à effectuer n'est pas remboursable</p>
-        <div class="mt-6">
-          <form
-            action="index.php?action=paiement_wizall"
-            method="post"
-            enctype="multipart/form-data"
-            class="row g-3 mt-4"
-          >
-            <div class="col-12">
-              <label for="client_number" class="form-label">Number client</label>
-              <input type="text" class="form-control" name="client_number" id="client_number" value="778044429" />
-            </div>
-            <div class="col-12">
-              <label for="point" class="form-label">Point</label>
-              <input type="text" class="form-control" name="point" id="point" value="<?= $_SESSION['vote']['point'] ?>" readonly/>
-            </div>
-            <div class="d-grid gap-2 col-12 mx-auto mt-4">
-              <button type="submit" class="btn btn-primary">
-                Payer <?= $_SESSION['vote']['prix'] ?> FCFA
-              </button>
-            </div>
-          </form>
+      <div class="col-md-6">
+        <div class="paiement-right-container">
+          <h4 class="text-bold">Detail du paiement</h4>
+          <p id="text">Le paiement qui vous vous apprêtez à effectuer n'est pas remboursable</p>
+          <div class="mt-6">
+            <form
+              action="index.php?action=paiement_wizall"
+              method="post"
+              enctype="multipart/form-data"
+              class="row g-3 mt-4"
+            >
+              <div class="col-12">
+                <label for="client_number" class="form-label">Number client</label>
+                <input type="text" class="form-control" name="client_number" id="client_number" value="778044429" />
+              </div>
+              <div class="col-12">
+                <label for="point" class="form-label">Point</label>
+                <input type="text" class="form-control" name="point" id="point" value="<?= $_SESSION['vote']['point'] ?>" readonly/>
+              </div>
+              <div class="d-grid gap-2 col-12 mx-auto mt-4">
+                <button type="submit" class="btn btn-primary">
+                  Payer <?= $_SESSION['vote']['prix'] ?> FCFA
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

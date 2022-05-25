@@ -22,8 +22,8 @@
     <?php include('View/layout/navigation.php') ?>
     <div class="container content mt-4">
       <h2><?= $event['titre'] ?></h2>
-      <div class="row mt-4">
-        <div class="col-6">
+      <div class="row mt-2">
+        <div class="col-md-6 m-t2">
           <div class="card">
             <?php if($event['video'] != NULL) { ?>
             <iframe height="260" src="<?= $event['video'] ?>" 
@@ -37,17 +37,17 @@
             <?php } ?>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6 mt-2">
           <div class="row">
             <div class="col-6">
-              <p><b>Catégorie</b></p>
+              <div><b>Catégorie</b></div>
               <button class="btn btn-outline-primary"><?= $event['categorie'] ?></button>
             </div>
             <div class="col-6">
-              <p><b>Date limite</b></p>
-              <p class="text-danger">Fini le <?= $date ?></p>
+              <div><b>Date limite</b></div>
+              <div class="text-danger">Fini le <?= $date ?></div>
             </div>
-            <div class="col-12 description">
+            <div class="col-12 description mt-2">
               <h4>Description</h4>
               <p>
                 <?= $event['description'] ?>

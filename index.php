@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+
     require "./bootstrap.php";
 
     use Controller\UserController;

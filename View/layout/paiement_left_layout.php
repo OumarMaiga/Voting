@@ -21,7 +21,7 @@
           
           <span class="paiement-vote-candidat-name mx-2"><?= $candidat['prenom']." ".$candidat['nom'] ?></span>
 
-          <span style="position: absolute; right: 10px">
+          <span class="paiement-vote-candidat-point">
           
             <?= ($points > 0) ? $points : "0" ?> point(s)
           </span>

@@ -21,7 +21,7 @@
             
             try {
 
-                $this->dbConnection = new \PDO("mysql:host=$host;dbname=$dbName",$user,$password);
+                $this->dbConnection = new \PDO("mysql:host=$host;dbname=$dbName;charset=UTF8",$user,$password);
 
             } catch (Exception $e) {
                 die('Erreur: '.$e->getMessage());
@@ -32,3 +32,4 @@
             return $this->dbConnection;
         }
     }
+    

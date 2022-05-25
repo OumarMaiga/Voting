@@ -77,10 +77,9 @@
 }
 
 .paiement-left-container{
-  padding: 4rem 6rem;
   background-color: #F4F4F4;
 }
-.paiement-right-container{
+.paiement-right-container, .paiement-left-container{
   padding: 4rem 6rem;
 }
 
@@ -101,6 +100,10 @@
   font-weight: 600;
   font-size: 18px;
 }
+.paiement-vote-candidat-point {
+  position: absolute;
+  right: 4px;
+}
 
 .paiement-vote-candidat-profile {
   height: 60px;
@@ -118,4 +121,30 @@
 }
 .text-lighter {
   font-weight: lighter;
+}
+
+
+/* View Tablette -- Medium devices (tablets, 768px and up) */
+
+@media (max-width: 991px) { 
+
+  .paiement-left-container, .paiement-right-container {
+    padding: 1rem 2rem;
+  }
+
+}
+
+
+@media (max-width: 567px) {
+
+  .paiement-left-container, .paiement-right-container {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .paiement-vote-candidat-point {
+    position: relative;
+    right: 0;
+    text-align: center;
+  }
+
 }
