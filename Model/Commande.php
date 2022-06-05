@@ -26,7 +26,7 @@
         }
         
         public function update($id, Array $inputs) {
-            $req = $this->db->prepare('UPDATE commandes SET nom=:nom, prenom=:prenom, phone=:phone, email=:email, count=:count, ticket_id=:ticket_id, paid=:paid, etat=:etat WHERE id=:id');
+            $req = $this->db->prepare('UPDATE commandes SET nom=:nom, prenom=:prenom, phone=:phone, email=:email, count=:count, ticket_id=:ticket_id, paid=:paid, etat=:etat, updated_at=NOW() WHERE id=:id');
             $req->bindParam(':nom', $inputs['nom']);
             $req->bindParam(':prenom', $inputs['prenom']);
             $req->bindParam(':phone', $inputs['phone']);

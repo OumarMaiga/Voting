@@ -22,11 +22,18 @@
         }
         
         public function update($id, Array $inputs) {
-            $req = $this->db->prepare('UPDATE tickets SET title=:title, overview=:overview, count=:count, image=:image WHERE id=:id');
+            $req = $this->db->prepare('UPDATE tickets SET title=:title, overview=:overview, count=:count, image=:image, updated_at=NOW() WHERE id=:id');
             $req->bindParam(':title', $inputs['title']);
             $req->bindParam(':overview', $inputs['overview']);
             $req->bindParam(':count', $inputs['count']);
             $req->bindParam(':image', $inputs['image']);
+            $req->bindParam(':id', $id);
+            return $req;
+        }
+        
+        public function update_count($id, $count) {
+            $req = $this->db->prepare('UPDATE tickets SET count=:count WHERE id=:id');
+            $req->bindParam(':count', $count);
             $req->bindParam(':id', $id);
             return $req;
         }

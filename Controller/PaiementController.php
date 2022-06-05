@@ -45,28 +45,35 @@
                 if ($search_user->message == "Invalid User Account")
                 {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_invalid_user_dev_account");
+                    exit;
                 }
                 else if ($search_user->message == 'Unauthorized') 
                 {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_unauthorized");
+                    exit;
                 }
                 else if ($search_user->message == "Incomplete Txn Request") 
                 {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_incomplete_txn_request");
+                    exit;
                 }
                 else
                 {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_search_user");
+                    exit;
                 }
             }
 
             if(isset($search_user->code) && $search_user->code == "400") {
                 if ($search_user->error == "AGENT_NOT_EXIST") {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_agent_not_exist");
+                    exit;
                 } else if($search_user->error == "Invalid User Account") {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_invalid_user_account");
+                    exit;
                 } else {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_search_user");
+                    exit;
                 }
             }
 
@@ -76,6 +83,7 @@
                 $getmoney = $this->wizall->getmoney();
                 if (isset($getmoney->code) && $getmoney->code != "200") {
                     header('location:index.php?action=wizall_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_getmoney");
+                    exit;
                 }
                 
                 if (isset($getmoney->transaction_id) && isset($getmoney->name)) {
@@ -83,6 +91,7 @@
                     $_SESSION['vote']['name'] = $getmoney->name;
 
                     header('location:index.php?action=wizall_confirm_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']);
+                    exit;
                     
                 }
 
@@ -96,6 +105,7 @@
             $confirm = $this->wizall->confirm();
             if (isset($confirm->code) && $confirm->code == "400") {
                 header('location:index.php?action=wizall_confirm_page&event_id='.$_SESSION['vote']['event_id'].'&candidat_id='.$_SESSION['vote']['candidat_id']."&msg=error_paiement_code");
+                exit;
             }
             if (isset($confirm->Operation) && $confirm->Operation == "AgentGetMoneyConfirm") {
                 $inputs = array(
@@ -110,6 +120,7 @@
                 unset($_SESSION['vote']);
 
                 header('location:index.php?action=show_event&id='.$event_id."&msg=paiement_success");
+                exit;
             }
 
 

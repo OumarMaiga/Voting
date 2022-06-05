@@ -34,19 +34,23 @@
                     $_SESSION['user'] = $data;
 
                     header('location:index.php?action=accueil');
+                    exit;
                 
                 } else {
                     //$url = preg_replace('/msg=*/', 'msg=login_not_found', $previous);
                     header('location:index.php?action=login&msg=login_not_found');
+                    exit;
                 }
             } else {
                 header('location:index.php?action=login&msg=field_required');
+                exit;
             }
         }
         
         public function logout() {
             session_unset();
             header('location:index.php?action=accueil&msg=logout');
+            exit;
         }
         
     }

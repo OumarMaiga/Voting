@@ -5,6 +5,7 @@
     use Model\Event;
     use Model\User;
     use Model\Candidat;
+    use Model\Ticket;
 
     use API\Wizall;
 
@@ -14,16 +15,19 @@
         private $user;
         private $wizall;
         private $candidat;
+        private $ticket;
         
         public function __construct() {
             $this->event = new Event;
             $this->user = new User;
             $this->wizall = new Wizall;
             $this->candidat = new Candidat;
+            $this->ticket = new Ticket;
         }
 
         public function accueil() {
             $events = $this->event->getAll();
+            $tickets = $this->ticket->getAll();
 
             require('View/page/accueil.php');
         }       

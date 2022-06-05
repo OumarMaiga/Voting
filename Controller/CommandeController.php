@@ -27,27 +27,33 @@
 
         public function save($ticket_id) {
             // Impossible si le user n'est pas connecter
-            if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
-                header('location:index.php?action=create_commande&msg=user_required');
-            }
+            /*if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
+                header('location:index.php?action=accueil&msg=user_required');
+                exit;
+            }*/
             $ticket = $this->ticket->getBy('id', $ticket_id);
-            if (count($ticket) == 0) {
-                header('location:index.php?action=create_commande&ticket_id='.$ticket_id.'&msg=ticket_not_found');
+
+            if (empty($ticket)) {
+                header('location:index.php?action=accueil&ticket_id='.$ticket_id.'&msg=ticket_not_found');
+                exit;
+            } else if ($_POST['count'] > $ticket[0]['count']) {
+                header('location:index.php?action=accueil&ticket_id='.$ticket_id.'&msg=ticket_not_complete&count='.$ticket[0]['count']);
+                exit;
             }
-            if ($_POST['count'] > $ticket[0]['count']) {
-                header('location:index.php?action=create_commande&ticket_id='.$ticket_id.'&msg=ticket_not_complete');
-            }
+
             $_POST['ticket_id'] = $ticket_id;
             $commande = $this->commande->save($_POST);
             
             if($commande->execute()) {
                 $diff = $ticket[0]['count'] - $_POST['count'];
-                $inputs = ['count' => $diff];
-                $response = $this->ticket->update($ticket_id, $inputs);
+                $count = $diff;
+                $response = $this->ticket->update_count($ticket_id, $count);
                 $response->execute();
-                header('location:index.php?action=index_ticket&msg=commande_created');
+                header('location:index.php?action=accueil&msg=commande_created');
+                exit;
             } else {
-                header('location:index.php?action=create_commande&ticket_id='.$ticket_id.'&msg=commande_not_created');
+                header('location:index.php?action=accueil&ticket_id='.$ticket_id.'&msg=commande_not_created');
+                exit;
             }
 
         }
@@ -59,6 +65,7 @@
                 require('View/commande/show.php'); 
             } else {
                 header('location:index.php?action=index_commande&msg=commande_not_fetched');
+                exit;
             }  
         }
 
@@ -71,6 +78,7 @@
            
             } else {
                 header('location:index.php?action=index_commande&msg=commande_not_fetched');
+                exit;
             }
         }
 
@@ -78,8 +86,10 @@
             $commande = $this->commande->update($id, $_POST);
             if($commande->execute()) {
                 header('location:index.php?action=index_commande&msg=commande_updated');
+                exit;
             } else {
                 header('location:index.php?action=edit_commande&id='.$id.'&msg=commande_not_updated');
+                exit;
             }
         }
 
@@ -87,8 +97,10 @@
             $commande = $this->commande->delete($id);
             if($commande->execute()) {
                 header('location:index.php?action=index_commande&msg=commande_deleted');
+                exit;
             } else {
                 header('location:index.php?action=show_commande&id='.$id.'&msg=commande_not_deleted');
+                exit;
             }
         }
         

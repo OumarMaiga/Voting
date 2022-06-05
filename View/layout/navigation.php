@@ -25,7 +25,7 @@
     ?>
         <a 
           class="btn btn-danger"
-          data-micromodal-trigger="modal-1"
+          data-micromodal-trigger="login-modal"
           href="javascript:void(0);">Se connecter</a>
     <?php } ?>
   </div>

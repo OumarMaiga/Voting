@@ -64,12 +64,41 @@
         </div>
         <?php } ?>
       </div>
+      
+      <h5 class="content mt-4">Vente de ticket</h5> 
+      <div class="row row-cols-1 row-cols-md-4 g-4 mt-2 mb-4">
+        <?php
+          foreach ($tickets as $ticket) {
+        ?>
+        <div class="col">
+          <div class="card">
+            <?php if($ticket['image'] == NULL) { ?>
+              <img src="public/image/ticket.jpg" class="card-img-top" alt="" id="home-event-img">
+            <?php } else { ?>
+              <img src="<?= $ticket['image'] ?>" class="card-img-top" alt="" id="home-event-img">
+            <?php } ?>
+            <div class="card-body">
+              <h5 class="card-title"><?= $ticket['title'] ?></h5>
+              <p class="card-text"><?= substr($ticket['overview'], 0, 100); ?> <?= (strlen($ticket['overview']) > 100) ? " ..." : "" ?></p>
+              <p class="small-text text-danger"></p>
+              <a 
+                class="btn btn-danger"
+                data-micromodal-trigger="commande-modal"
+                href="javascript:void(0);">Acheter</a>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
+      </div>
     </div>
     <!-- Messages -->
     <?php include('View/layout/message.php') ?>
 
     <!-- Login Modal -->
     <?php include('View/layout/login.php') ?>
+
+    <!-- Commande Modal -->
+    <?php include('View/layout/commande.php') ?>
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

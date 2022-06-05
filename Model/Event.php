@@ -25,7 +25,7 @@
         }
         
         public function update($id, Array $inputs) {
-            $req = $this->db->prepare('UPDATE events SET titre=:titre, categorie=:categorie, description=:description, expire=:expire, image=:image, video=:video WHERE id=:id');
+            $req = $this->db->prepare('UPDATE events SET titre=:titre, categorie=:categorie, description=:description, expire=:expire, image=:image, video=:video, updated_at=NOW() WHERE id=:id');
             $req->bindParam(':titre', $inputs['titre']);
             $req->bindParam(':categorie', $inputs['categorie']);
             $req->bindParam(':description', $inputs['description']);

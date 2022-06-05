@@ -24,7 +24,7 @@
         }
         
         public function update($id, Array $inputs) {
-            $req = $this->db->prepare('UPDATE candidats SET prenom=:prenom, nom=:nom, date_naissance=:date_naissance, genre=:genre, image=:image, event_id=:event_id WHERE id=:id');
+            $req = $this->db->prepare('UPDATE candidats SET prenom=:prenom, nom=:nom, date_naissance=:date_naissance, genre=:genre, image=:image, event_id=:event_id, updated_at=NOW() WHERE id=:id');
             $req->bindParam(':prenom', $inputs['prenom']);
             $req->bindParam(':nom', $inputs['nom']);
             $req->bindParam(':date_naissance', $inputs['date_naissance']);

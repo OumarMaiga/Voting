@@ -32,11 +32,13 @@
             // Impossible si le user n'est pas connecter
             if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
                 header('location:index.php?action=create_event&msg=user_required');
+                exit;
             }
 
             // Impossible si les champs obligatoire ne sont pas remplis
             if((!isset($_POST['titre']) || $_POST['titre'] == "") || (!isset($_POST['expire']) || $_POST['expire'] == "")) {
                 header('location:index.php?action=create_event&msg=field_required');
+                exit;
             }
             // Upload d'image
             if (isset($_FILES['image'])) {
@@ -49,12 +51,15 @@
                 if ($response['error'] == true) {
                     if ($response['msg'] == "image_ext") {
                         header('location:index.php?action=create_event&msg=image_ext');
+                        exit;
                     }
                     if ($response['msg'] == "image_file_size") {
                         header('location:index.php?action=create_event&msg=image_file_size');
+                        exit;
                     }
                     if ($response['msg'] == "image_upload_failed") {
                         header('location:index.php?action=create_event&msg=image_upload_failed');
+                        exit;
                     }
                 } else {
                     $_POST['image'] = $response['url'];
@@ -65,8 +70,10 @@
             if($event->execute()) {
                 $event = $this->event->getLast();
                 header('location:index.php?action=index_candidat&event_id='.$event['id'].'&msg=event_created');
+                exit;
             } else {
                 header('location:index.php?action=create_event&msg=event_not_created');
+                exit;
             }
 
         }
@@ -81,6 +88,7 @@
                 require('View/event/show.php');
             } else {
                 header('location:index.php?action=accueil&msg=event_not_fetched');
+                exit;
             }  
         }
 
@@ -96,6 +104,7 @@
                 require('View/event/edit.php'); 
             } else {
                 header('location:index.php?action=index_event&msg=event_not_fetched');
+                exit;
             }
         }
 
@@ -111,12 +120,15 @@
                 if ($response['error'] == true) {
                     if ($response['msg'] == "image_ext") {
                         header('location:index.php?action=update_event&msg=image_ext');
+                        exit;
                     }
                     if ($response['msg'] == "image_file_size") {
                         header('location:index.php?action=update_event&msg=image_file_size');
+                        exit;
                     }
                     if ($response['msg'] == "image_upload_failed") {
                         header('location:index.php?action=update_event&msg=image_upload_failed');
+                        exit;
                     }
                 } else {
                     $_POST['image'] = $response['url'];
@@ -125,8 +137,10 @@
             $event = $this->event->update($id, $_POST);
             if($event->execute()) {
                 header('location:index.php?action=index_event&msg=event_updated');
+                exit;
             } else {
                 header('location:index.php?action=edit_event&id='.$id.'&msg=event_not_updated');
+                exit;
             }
         }
 
@@ -134,8 +148,10 @@
             $event = $this->event->delete($id);
             if($event->execute()) {
                 header('location:index.php?action=index_event&msg=event_deleted');
+                exit;
             } else {
                 header('location:index.php?action=show_event&id='.$id.'&msg=event_not_deleted');
+                exit;
             }
         }
         

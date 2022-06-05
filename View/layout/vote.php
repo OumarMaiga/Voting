@@ -1,4 +1,4 @@
-<div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
+<div class="modal micromodal-slide" id="paiment-modal" aria-hidden="true">
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
     <div
         class="modal__container"

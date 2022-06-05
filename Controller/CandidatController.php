@@ -33,6 +33,7 @@
             // Impossible si le user n'est pas connecter
             if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
                 header('location:index.php?action=create_candidat&event_id='.$event_id.'&msg=user_required');
+                exit;
             }
             // Upload d'image
             if (isset($_FILES['image'])) {
@@ -45,12 +46,15 @@
                 if ($response['error'] == true) {
                     if ($response['msg'] == "image_ext") {
                         header('location:index.php?action=create_event&msg=image_ext');
+                        exit;
                     }
                     if ($response['msg'] == "image_file_size") {
                         header('location:index.php?action=create_event&msg=image_file_size');
+                        exit;
                     }
                     if ($response['msg'] == "image_upload_failed") {
                         header('location:index.php?action=create_event&msg=image_upload_failed');
+                        exit;
                     }
                 } else {
                     $_POST['image'] = $response['url'];
@@ -62,8 +66,10 @@
             
             if($candidat->execute()) {
                 header('location:index.php?action=index_candidat&event_id='.$event_id.'&msg=candidat_created');
+                exit;
             } else {
                 header('location:index.php?action=create_candidat&event_id='.$event_id.'&msg=candidat_not_created');
+                exit;
             }
 
         }
@@ -75,6 +81,7 @@
                 require('View/candidat/show.php'); 
             } else {
                 header('location:index.php?action=index_candidat&msg=candidat_not_fetched');
+                exit;
             }  
         }
 
@@ -93,6 +100,7 @@
            
             } else {
                 header('location:index.php?action=index_candidat&event_id='.$event_id.'&msg=candidat_not_fetched');
+                exit;
             }
         }
 
@@ -109,12 +117,15 @@
                 if ($response['error'] == true) {
                     if ($response['msg'] == "image_ext") {
                         header('location:index.php?action=update_event&msg=image_ext');
+                        exit;
                     }
                     if ($response['msg'] == "image_file_size") {
                         header('location:index.php?action=update_event&msg=image_file_size');
+                        exit;
                     }
                     if ($response['msg'] == "image_upload_failed") {
                         header('location:index.php?action=update_event&msg=image_upload_failed');
+                        exit;
                     }
                 } else {
                     $_POST['image'] = $response['url'];
@@ -124,8 +135,10 @@
             $candidat = $this->candidat->update($id, $_POST);
             if($candidat->execute()) {
                 header('location:index.php?action=index_candidat&event_id='.$event_id.'&msg=candidat_updated');
+                exit;
             } else {
                 header('location:index.php?action=edit_candidat&id='.$id.'&msg=candidat_not_updated');
+                exit;
             }
         }
 
@@ -133,8 +146,10 @@
             $candidat = $this->candidat->delete($id);
             if($candidat->execute()) {
                 header('location:index.php?action=index_candidat&msg=candidat_deleted');
+                exit;
             } else {
                 header('location:index.php?action=show_candidat&id='.$id.'&msg=candidat_not_deleted');
+                exit;
             }
         }
         

@@ -28,6 +28,7 @@
             // Impossible si le user n'est pas connecter
             if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
                 header('location:index.php?action=create_ticket&msg=user_required');
+                exit;
             }
             // Upload d'image
             if (isset($_FILES['image'])) {
@@ -40,12 +41,15 @@
                 if ($response['error'] == true) {
                     if ($response['msg'] == "image_ext") {
                         header('location:index.php?action=create_ticket&msg=image_ext');
+                        exit;
                     }
                     if ($response['msg'] == "image_file_size") {
                         header('location:index.php?action=create_ticket&msg=image_file_size');
+                        exit;
                     }
                     if ($response['msg'] == "image_upload_failed") {
                         header('location:index.php?action=create_ticket&msg=image_upload_failed');
+                        exit;
                     }
                 } else {
                     $_POST['image'] = $response['url'];
@@ -56,8 +60,10 @@
             
             if($ticket->execute()) {
                 header('location:index.php?action=index_ticket&msg=ticket_created');
+                exit;
             } else {
                 header('location:index.php?action=create_ticket&msg=ticket_not_created');
+                exit;
             }
 
         }
@@ -69,6 +75,7 @@
                 require('View/ticket/show.php'); 
             } else {
                 header('location:index.php?action=index_ticket&msg=ticket_not_fetched');
+                exit;
             }  
         }
 
@@ -81,6 +88,7 @@
            
             } else {
                 header('location:index.php?action=index_ticket&msg=ticket_not_fetched');
+                exit;
             }
         }
 
@@ -96,12 +104,15 @@
                 if ($response['error'] == true) {
                     if ($response['msg'] == "image_ext") {
                         header('location:index.php?action=update_ticket&msg=image_ext');
+                        exit;
                     }
                     if ($response['msg'] == "image_file_size") {
                         header('location:index.php?action=update_ticket&msg=image_file_size');
+                        exit;
                     }
                     if ($response['msg'] == "image_upload_failed") {
                         header('location:index.php?action=update_ticket&msg=image_upload_failed');
+                        exit;
                     }
                 } else {
                     $_POST['image'] = $response['url'];
@@ -111,8 +122,10 @@
             $ticket = $this->ticket->update($id, $_POST);
             if($ticket->execute()) {
                 header('location:index.php?action=index_ticket&msg=ticket_updated');
+                exit;
             } else {
                 header('location:index.php?action=edit_ticket&id='.$id.'&msg=ticket_not_updated');
+                exit;
             }
         }
 
@@ -120,8 +133,10 @@
             $ticket = $this->ticket->delete($id);
             if($ticket->execute()) {
                 header('location:index.php?action=index_ticket&msg=ticket_deleted');
+                exit;
             } else {
                 header('location:index.php?action=show_ticket&id='.$id.'&msg=ticket_not_deleted');
+                exit;
             }
         }
         

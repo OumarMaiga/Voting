@@ -77,7 +77,7 @@
                   <a
                     id="<?= $candidat['id'] ?>"
                     class="btn btn-outline-danger btn-vote"
-                    data-micromodal-trigger="modal-2"
+                    data-micromodal-trigger="paiment-modal"
                     href="javascript:void(0);"
                     >Voter</a
                   >
