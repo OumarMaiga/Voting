@@ -6,8 +6,11 @@
       if(isset($_SESSION['user'])) {
     ?>
       <a
-      class="nav-link text-white"
-      href="index.php?action=index_event">Tableau de bord</a>
+        class="nav-link text-white"
+        href="index.php?action=index_event">Tableau de bord</a>
+      <a
+        class="nav-link text-white"
+        href="index.php?action=index_ticket">Ticket</a>
       <a
         class="nav-link text-white"
         href="index.php?action=get_wizall_token_page">Get Wizall Token</a>

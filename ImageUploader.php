@@ -41,13 +41,16 @@
                 }
             }
             // Upload du fichier
-            if (move_uploaded_file($file['image']['tmp_name'], $folder.$nom_fichier)) {
-                $url = $folder.$nom_fichier;
-                $retour['url'] = $url;
-            } else {
-                $retour['error'] = true;
-                $retour['msg'] = 'image_upload_failed';
+            if($retour['error'] == false) {
+                if (move_uploaded_file($file['image']['tmp_name'], $folder.$nom_fichier)) {
+                    $url = $folder.$nom_fichier;
+                    $retour['url'] = $url;
+                } else {
+                    $retour['error'] = true;
+                    $retour['msg'] = 'image_upload_failed';
+                }
             }
+
 
             return $retour;
         }

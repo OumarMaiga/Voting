@@ -48,7 +48,7 @@
         }
 
         public function getAll() {
-            $req = $this->db->query('SELECT * from candidats LIMIT 1');
+            $req = $this->db->query('SELECT * from candidats');
             return $req->fetchAll();
         }
 

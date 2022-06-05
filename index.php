@@ -6,6 +6,8 @@
     use Controller\UserController;
     use Controller\AuthController;
     use Controller\CandidatController;
+    use Controller\TicketController;
+    use Controller\CommandeController;
     use Controller\EventController;
     use Controller\PageController;
     use Controller\PaiementController;
@@ -15,6 +17,8 @@
     $user = new UserController;
     $page = new PageController;
     $candidat = new CandidatController;
+    $ticket = new ticketController;
+    $commande = new CommandeController;
     $event = new EventController;
     $vote = new VoteController;
     $paiement = new PaiementController;
@@ -130,6 +134,52 @@
 //////////////////////////// VoteController //////////////////////////////////        
         case  'save_vote':
             $vote->save_vote($_GET['event_id'], $_GET['candidat_id']);
+            break;
+
+//////////////////////////// TicketController //////////////////////////////////        
+        case  'index_ticket':
+            $ticket->index();
+            break;
+        case  'create_ticket':
+            $ticket->create();
+            break;
+        case  'save_ticket':
+            $ticket->save();
+            break;
+        case  'edit_ticket':
+            $ticket->edit($_GET['id']);
+            break;
+        case  'update_ticket':
+            $ticket->update($_GET['id']);
+            break;
+        case  'show_ticket':
+            $ticket->show($_GET['id']);
+            break;
+        case  'delete_ticket':
+            $ticket->delete($_GET['id']);
+            break;
+
+//////////////////////////// CommandeController //////////////////////////////////        
+        case  'index_commande':
+            $commande->index($_GET['ticket_id']);
+            break;
+        case  'create_commande':
+            $commande->create($_GET['ticket_id']);
+            break;
+        case  'save_commande':
+            $commande->save($_GET['ticket_id']);
+            break;
+        case  'edit_commande':
+            $commande->edit($_GET['id']);
+            break;
+        case  'update_commande':
+            $commande->update($_GET['id'], $_GET['ticket_id']);
+            break;
+        case  'show_commande':
+            $commande->show($_GET['id']);
+            break;
+        case  'delete_commande':
+            $commande->delete($_GET['id']);
             break;
                       
         default:
