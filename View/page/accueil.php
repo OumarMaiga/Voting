@@ -79,6 +79,7 @@
             <?php } ?>
             <div class="card-body">
               <h5 class="card-title"><?= $ticket['title'] ?></h5>
+              <p class="small-text text-danger"><?= $ticket['montant'] ?> Fcfa</p>
               <p class="card-text"><?= substr($ticket['overview'], 0, 100); ?> <?= (strlen($ticket['overview']) > 100) ? " ..." : "" ?></p>
               <p class="small-text text-danger"></p>
               <a 

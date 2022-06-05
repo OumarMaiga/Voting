@@ -54,6 +54,7 @@
             <th scope="col">Titre</th>
             <th scope="col">Description</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Montant</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -68,6 +69,7 @@
                     <td><?= $ticket['title'] ?></td>
                     <td><?= $ticket['overview'] ?></td>
                     <td><?= $ticket['count'] ?></td>
+                    <td><?= $ticket['montant'] ?> Fcfa</td>
                     <td class="actions">
                       <a class="actions" href="index.php?action=create_commande&ticket_id=<?= $ticket['id'] ?>">Acheter</a>
                       <a class="actions" href="index.php?action=edit_ticket&id=<?= $ticket['id'] ?>">Modifier</a>

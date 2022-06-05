@@ -12,21 +12,23 @@
             $this->db = (new DatabaseConnector())->getConnection();
         }
         public function save(Array $inputs) {
-            $req = $this->db->prepare('INSERT INTO tickets (title, overview, count, image, user_id, created_at)VALUES(:title, :overview, :count, :image, :user_id, NOW())');
+            $req = $this->db->prepare('INSERT INTO tickets (title, overview, count, image, montant, user_id, created_at)VALUES(:title, :overview, :count, :image, :montant, :user_id, NOW())');
             $req->bindParam(':title', $inputs['title']);
             $req->bindParam(':overview', $inputs['overview']);
             $req->bindParam(':count', $inputs['count']);
             $req->bindParam(':image', $inputs['image']);
+            $req->bindParam(':montant', $inputs['montant']);
             $req->bindParam(':user_id', $_SESSION['user']['id']);
             return $req;
         }
         
         public function update($id, Array $inputs) {
-            $req = $this->db->prepare('UPDATE tickets SET title=:title, overview=:overview, count=:count, image=:image, updated_at=NOW() WHERE id=:id');
+            $req = $this->db->prepare('UPDATE tickets SET title=:title, overview=:overview, count=:count, image=:image, montant=:montant, updated_at=NOW() WHERE id=:id');
             $req->bindParam(':title', $inputs['title']);
             $req->bindParam(':overview', $inputs['overview']);
             $req->bindParam(':count', $inputs['count']);
             $req->bindParam(':image', $inputs['image']);
+            $req->bindParam(':montant', $inputs['montant']);
             $req->bindParam(':id', $id);
             return $req;
         }

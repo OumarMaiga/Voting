@@ -55,6 +55,11 @@
             />
           </div>
           <div class="col-md-4">
+            <label for="montant" class="form-label">Montant</label>
+            <input type="text" class="form-control" name="montant" id="montant" value="<?= $ticket['montant'] ?>"
+            />
+          </div>
+          <div class="col-md-4">
             <label for="image" class="form-label">Photo du ticket</label>
             <input
               type="file"
