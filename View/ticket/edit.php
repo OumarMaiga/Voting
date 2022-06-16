@@ -48,7 +48,10 @@
             <label for="overview" class="form-label">Description</label>
             <textarea class="form-control" name="overview" id="overview"><?= $ticket['overview'] ?></textarea>
           </div>
-          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <label for="lieu" class="form-label">Lieu</label>
+            <input type="text" class="form-control" name="lieu" id="lieu" value="<?= $ticket['lieu'] ?>"/>
+          </div>
           <div class="col-md-4">
             <label for="count" class="form-label">Nombre de ticket</label>
             <input type="number" class="form-control" name="count" id="count" value="<?= $ticket['count'] ?>"
@@ -57,6 +60,16 @@
           <div class="col-md-4">
             <label for="montant" class="form-label">Montant</label>
             <input type="text" class="form-control" name="montant" id="montant" value="<?= $ticket['montant'] ?>"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="expire" class="form-label">Fin de campagne</label>
+            <input
+              type="date"
+              class="form-control"
+              name="expire"
+              id="expire"
+              value="<?= $day ?>"
             />
           </div>
           <div class="col-md-4">

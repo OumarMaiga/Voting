@@ -53,8 +53,10 @@
             <th scope="col">#</th>
             <th scope="col">Titre</th>
             <th scope="col">Description</th>
+            <th scope="col">Lieu</th>
             <th scope="col">Nombre</th>
             <th scope="col">Montant</th>
+            <th scope="col">Date de fin</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -63,13 +65,29 @@
             $n = 0;
             foreach ($tickets as $ticket) {
                 $n++;
+                // Formatage de la date
+                if ($ticket['expire'] == NULL) {
+                  $date = "";
+                } else {
+                  $date = date_create($ticket['expire']);
+                  $date = date_format($date, 'd/m/Y');
+                }
+                $today = date('d/m/Y');
+                
+                if($today <= $date) {
+                  $etat = true;
+                } else {
+                  $etat = false;
+                }
             ?>
                 <tr>
                     <th scope="row"><?= $n ?></th>
                     <td><?= $ticket['title'] ?></td>
                     <td><?= $ticket['overview'] ?></td>
+                    <td><?= $ticket['lieu'] ?></td>
                     <td><?= $ticket['count'] ?></td>
                     <td><?= $ticket['montant'] ?> Fcfa</td>
+                    <td><?= $date ?></td>
                     <td class="actions">
                       <a class="actions" href="index.php?action=create_commande&ticket_id=<?= $ticket['id'] ?>">Acheter</a>
                       <a class="actions" href="index.php?action=edit_ticket&id=<?= $ticket['id'] ?>">Modifier</a>

@@ -12,23 +12,27 @@
             $this->db = (new DatabaseConnector())->getConnection();
         }
         public function save(Array $inputs) {
-            $req = $this->db->prepare('INSERT INTO tickets (title, overview, count, image, montant, user_id, created_at)VALUES(:title, :overview, :count, :image, :montant, :user_id, NOW())');
+            $req = $this->db->prepare('INSERT INTO tickets (title, overview, count, image, montant, user_id, expire, lieu, created_at)VALUES(:title, :overview, :count, :image, :montant, :user_id, :expire, lieu, NOW())');
             $req->bindParam(':title', $inputs['title']);
             $req->bindParam(':overview', $inputs['overview']);
             $req->bindParam(':count', $inputs['count']);
             $req->bindParam(':image', $inputs['image']);
             $req->bindParam(':montant', $inputs['montant']);
             $req->bindParam(':user_id', $_SESSION['user']['id']);
+            $req->bindParam(':expire', $inputs['expire']);
+            $req->bindParam(':lieu', $inputs['lieu']);
             return $req;
         }
         
         public function update($id, Array $inputs) {
-            $req = $this->db->prepare('UPDATE tickets SET title=:title, overview=:overview, count=:count, image=:image, montant=:montant, updated_at=NOW() WHERE id=:id');
+            $req = $this->db->prepare('UPDATE tickets SET title=:title, overview=:overview, count=:count, image=:image, montant=:montant, expire=:expire, lieu=:lieu, updated_at=NOW() WHERE id=:id');
             $req->bindParam(':title', $inputs['title']);
             $req->bindParam(':overview', $inputs['overview']);
             $req->bindParam(':count', $inputs['count']);
             $req->bindParam(':image', $inputs['image']);
             $req->bindParam(':montant', $inputs['montant']);
+            $req->bindParam(':expire', $inputs['expire']);
+            $req->bindParam(':lieu', $inputs['lieu']);
             $req->bindParam(':id', $id);
             return $req;
         }

@@ -84,8 +84,7 @@
               <p class="small-text text-danger"></p>
               <a 
                 class="btn btn-danger"
-                data-micromodal-trigger="commande-modal"
-                href="javascript:void(0);">Acheter</a>
+                href="index.php?action=show_ticket&id=<?= $ticket['id'] ?>">Détail</a>
             </div>
           </div>
         </div>

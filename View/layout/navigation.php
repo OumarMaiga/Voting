@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark">
 <div class="container">
-  <a class="navbar-brand" href="index.php">LARCOM</a>
+  <a class="navbar-brand" href="index.php">CLICK EVENT</a>
   <div class="d-flex">
     <?php
       if(isset($_SESSION['user'])) {

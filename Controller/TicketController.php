@@ -71,10 +71,10 @@
         public function show($id) {
             $ticket = $this->ticket->getById($id);
 
-            if(empty($ticket)) {
+            if(!empty($ticket)) {
                 require('View/ticket/show.php'); 
             } else {
-                header('location:index.php?action=index_ticket&msg=ticket_not_fetched');
+                header('location:index.php?action=accueil&msg=ticket_not_fetched');
                 exit;
             }  
         }
@@ -83,7 +83,15 @@
             $ticket = $this->ticket->getById($id);
             
             if(!empty($ticket)) {
-                
+                // Formatage de la date
+                if ($ticket['expire'] == NULL) {
+                    $date = "";
+                  } else {
+                        $date = date_create($ticket['expire']);
+                        $day = date_format($date, 'Y-m-d');
+                        $hour = date_format($date, 'H:i');
+                        $date = $day."T".$hour;
+                  }
                 require('View/ticket/edit.php'); 
            
             } else {

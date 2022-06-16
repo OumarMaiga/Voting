@@ -81,6 +81,7 @@
 }
 .paiement-right-container, .paiement-left-container{
   padding: 4rem 6rem;
+  min-height: 100vh;
 }
 
 .paiement-vote-title {
