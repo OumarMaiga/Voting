@@ -42,9 +42,11 @@
             <th scope="col">#</th>
             <th scope="col">Prénom</th>
             <th scope="col">Nom</th>
+            <th scope="col">Code</th>
             <th scope="col">Email</th>
             <th scope="col">Telephone</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Etat</th>
             <!--<th scope="col">Actions</th>-->
           </tr>
         </thead>
@@ -58,9 +60,11 @@
                     <th scope="row"><?= $n ?></th>
                     <td><?= $commande['prenom'] ?></td>
                     <td><?= $commande['nom'] ?></td>
-                    <td><?= genre($commande['email']) ?></td>
+                    <td>as01IU</td>
+                    <td><?= $commande['email'] ?></td>
                     <td><?= $commande['phone'] ?></td>
                     <td><?= $commande['count'] ?></td>
+                    <td><?= $commande['etat'] ?></td>
                     <!--<td class="actions">
                     <a class="actions" href="index.php?action=edit_commande&id=<?= $commande['id'] ?>">Modifier</a>
                     </td>-->

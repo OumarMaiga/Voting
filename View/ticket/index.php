@@ -55,6 +55,7 @@
             <th scope="col">Description</th>
             <th scope="col">Lieu</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Commande</th>
             <th scope="col">Montant</th>
             <th scope="col">Date de fin</th>
             <th scope="col">Actions</th>
@@ -64,6 +65,7 @@
             <?php
             $n = 0;
             foreach ($tickets as $ticket) {
+              $ticket_cmd_count = ticket_cmd_count($ticket['id']);
                 $n++;
                 // Formatage de la date
                 if ($ticket['expire'] == NULL) {
@@ -86,10 +88,17 @@
                     <td><?= $ticket['overview'] ?></td>
                     <td><?= $ticket['lieu'] ?></td>
                     <td><?= $ticket['count'] ?></td>
+                    <td>
+                      <a href="index.php?action=index_commande&ticket_id=<?= $ticket['id'] ?>">
+                        <?= $ticket_cmd_count ?>
+                      </a>
+                    </td>
                     <td><?= $ticket['montant'] ?> Fcfa</td>
                     <td><?= $date ?></td>
                     <td class="actions">
-                      <a class="actions" href="index.php?action=create_commande&ticket_id=<?= $ticket['id'] ?>">Acheter</a>
+                      <a href="index.php?action=show_ticket&ticket_id=<?= $ticket['id'] ?>">
+                          <i class="far fa-eye fa-2x"></i>
+                      </a>
                       <a class="actions" href="index.php?action=edit_ticket&id=<?= $ticket['id'] ?>">Modifier</a>
                       <a class="actions" href="index.php?action=delete_ticket&id=<?= $ticket['id'] ?>">Supprimer</a>
                     </td>

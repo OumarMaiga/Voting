@@ -11,8 +11,9 @@
         public function __construct() {
             $this->db = (new DatabaseConnector())->getConnection();
         }
+
         public function save(Array $inputs) {
-            $req = $this->db->prepare('INSERT INTO tickets (title, overview, count, image, montant, user_id, expire, lieu, created_at)VALUES(:title, :overview, :count, :image, :montant, :user_id, :expire, lieu, NOW())');
+            $req = $this->db->prepare('INSERT INTO tickets (title, overview, count, image, montant, user_id, expire, lieu, created_at)VALUES(:title, :overview, :count, :image, :montant, :user_id, :expire, :lieu, NOW())');
             $req->bindParam(':title', $inputs['title']);
             $req->bindParam(':overview', $inputs['overview']);
             $req->bindParam(':count', $inputs['count']);

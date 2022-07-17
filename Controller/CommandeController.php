@@ -37,11 +37,12 @@
                 header('location:index.php?action=accueil&ticket_id='.$ticket_id.'&msg=ticket_not_found');
                 exit;
             } else if ($_POST['count'] > $ticket[0]['count']) {
-                header('location:index.php?action=accueil&ticket_id='.$ticket_id.'&msg=ticket_not_complete&count='.$ticket[0]['count']);
+                header('location:index.php?action=buy_ticket&id='.$ticket_id.'&msg=ticket_not_complete&count='.$ticket[0]['count']);
                 exit;
             }
 
             $_POST['ticket_id'] = $ticket_id;
+            $_POST['etat'] = "precommande";
             $commande = $this->commande->save($_POST);
             
             if($commande->execute()) {

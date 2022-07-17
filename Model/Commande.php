@@ -61,4 +61,9 @@
             $req->bindParam(':id', $id);
             return $req;
         }
+
+        public function ticketCommandeCount($tcket_id) {
+            $req = $this->db->query("SELECT SUM(count) as count from commandes WHERE ticket_id=$tcket_id");
+            return $req->fetch();
+        }
     }
