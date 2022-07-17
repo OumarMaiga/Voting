@@ -155,6 +155,9 @@
         case  'show_ticket':
             $ticket->show($_GET['id']);
             break;
+        case  'buy_ticket':
+            $ticket->buy($_GET['id']);
+            break;
         case  'delete_ticket':
             $ticket->delete($_GET['id']);
             break;

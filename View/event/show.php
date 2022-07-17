@@ -16,17 +16,17 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>Click event</title>
+    <title>Click event | Event</title>
   </head>
   <body>
     <?php include('View/layout/navigation.php') ?>
     <div class="container content mt-4">
-      <h2><?= $event['titre'] ?></h2>
       <div class="row mt-2">
-        <div class="col-md-6 m-t2">
+        <div class="col-12">
+          <h2><?= $event['titre'] ?></h2>
           <div class="card">
             <?php if($event['video'] != NULL) { ?>
-            <iframe height="260" src="<?= $event['video'] ?>" 
+            <iframe height="460" src="<?= $event['video'] ?>" 
               title="YouTube video player" frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen></iframe>
@@ -36,35 +36,33 @@
               <img src="public/image/south-african-tourism.jpg" class="card-img-top rounded" alt="" id="show-event-img"/>
             <?php } ?>
           </div>
-        </div>
-        <div class="col-md-6 mt-2">
-          <div class="row">
-            <div class="col-6">
-              <div><b>Catégorie</b></div>
-              <button class="btn btn-outline-primary"><?= $event['categorie'] ?></button>
+          <div class="mt-4">
+            <h4>DESCRIPTION</h4>
+            <p>
+              <?= $event['description'] ?>
+            </p>
+            <div class="row mt-4">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+              <h5>CATEGORIE</h5>
+              <button class="btn btn-secondary"><?= $event['categorie'] ?></button>
             </div>
-            <div class="col-6">
-              <div><b>Date limite</b></div>
-              <div class="text-danger">Fini le <?= $date ?></div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+              <h5>DATE LIMIT</h5>
+              <P class="text-danger">Fini le <?= $date ?></P>
             </div>
-            <div class="col-12 description mt-2">
-              <h4>Description</h4>
-              <p>
-                <?= $event['description'] ?>
-              </p>
             </div>
           </div>
-          <div class="row description"></div>
         </div>
       </div>
       <div class="container mt-4">
-        <h4>Voter pour votre candidat favori</h4>
+        <h4>VOTEZ POUR VOTRE CANDIDAT FAVORI</h4>
+        <div id="trait"></div>
         <div class="row row-cols-1 row-cols-md-5 g-4 mt-2 mb-4">
           <?php 
             foreach ($candidats as $candidat) {
               $points = point_count($event['id'], $candidat['id']);
           ?>
-            <div class="col">
+            <div class="col-md-4">
               <div class="card">
                 <?php if($candidat['image'] == NULL) { ?>
                   <img src="public/image/avatar.jpg" class="card-img-top" alt="" id="show-candidat-img"/>
@@ -97,6 +95,9 @@
     <!-- Vote Modal -->
     <?php include('View/layout/vote.php') ?>
 
+    <!-- Footer -->
+    <?php include('View/layout/footer.php') ?>
+    
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     

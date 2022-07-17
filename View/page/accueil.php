@@ -24,7 +24,7 @@
       <h2 class="mt-2">Evènements & Campagnes</h2>
       <p>Voter pour vos candidats favoris et permetter leur de gagner !</p>
       <h5 class="partners">Nos Partenaires</h5>
-      <div class="brand-carousel section-padding owl-carousel">
+      <div class="brand-carousel section-padding owl-carousel" id="carousel-patenaire-container">
         <div class="single-logo">
           <img src="public/image/larcom.jpeg" class="logo-partenaire" alt="">
         </div>
@@ -39,52 +39,68 @@
         </div>
       </div>
       
-      <h5 class="content mt-4">Toutes les campagnes</h5> 
+      <h3 class="content mt-4 title" id="campagne">Toutes les campagnes</h3> 
+      <div id="trait"></div>
       <div class="row row-cols-1 row-cols-md-4 g-4 mt-2 mb-4">
         <?php
           foreach ($events as $event) {
             $date = date_create($event['expire']);
             $date = date_format($date, 'd/m/Y');
         ?>
-        <div class="col">
-          <div class="card">
-            <?php if($event['image'] == NULL) { ?>
-              <img src="public/image/miss-nappy.jpg" class="card-img-top" alt="" id="home-event-img">
-            <?php } else { ?>
-              <img src="<?= $event['image'] ?>" class="card-img-top" alt="" id="home-event-img">
-            <?php } ?>
-            <div class="card-body">
-              <h5 class="card-title"><?= $event['titre'] ?></h5>
-              <p class="card-text"><?= substr($event['description'], 0, 100); ?> <?= (strlen($event['description']) > 100) ? " ..." : "" ?></p>
-              <p class="small-text text-danger">Date de fin: <?= $date ?></p>
-              <a class="btn btn-danger"
-              href="index.php?action=show_event&id=<?= $event['id'] ?>">Détails</a>
+        <div class="col-12">
+          <div class="card" id="custom-card">
+            <div class="row">
+              <div class="col-md-3" id="custom-card-item">
+              <?php if($event['image'] == NULL) { ?>
+                <img src="public/image/miss-nappy.jpg" alt="" id="home-event-img">
+              <?php } else { ?>
+                <img src="<?= $event['image'] ?>" alt="" id="home-event-img">
+              <?php } ?>
+                </div>
+              <div class="col-md-7" id="custom-card-item">
+                <div class="card-body">
+                  <h5 class="card-title mb-3"><?= $event['titre'] ?></h5>
+                  <p class="card-text"><?= substr($event['description'], 0, 140); ?> <?= (strlen($event['description']) > 140) ? " ..." : "" ?></p>
+                </div>
+              </div>
+              <div class="col-md-2" id="custom-card-item" style="display:flex;justify-content:flex-end;">
+                <a class="btn btn-danger"
+                href="index.php?action=show_event&id=<?= $event['id'] ?>" id="btn-custom">Voir détails</a>
+              </div>
             </div>
           </div>
         </div>
         <?php } ?>
       </div>
       
-      <h5 class="content mt-4">Vente de ticket</h5> 
+      <h3 class="content mt-4 title" id="ticket">Vente de ticket</h3> 
+      <div id="trait"></div>
       <div class="row row-cols-1 row-cols-md-4 g-4 mt-2 mb-4">
         <?php
           foreach ($tickets as $ticket) {
         ?>
-        <div class="col">
-          <div class="card">
-            <?php if($ticket['image'] == NULL) { ?>
-              <img src="public/image/ticket.jpg" class="card-img-top" alt="" id="home-event-img">
-            <?php } else { ?>
-              <img src="<?= $ticket['image'] ?>" class="card-img-top" alt="" id="home-event-img">
-            <?php } ?>
-            <div class="card-body">
-              <h5 class="card-title"><?= $ticket['title'] ?></h5>
-              <p class="small-text text-danger"><?= $ticket['montant'] ?> Fcfa</p>
-              <p class="card-text"><?= substr($ticket['overview'], 0, 100); ?> <?= (strlen($ticket['overview']) > 100) ? " ..." : "" ?></p>
-              <p class="small-text text-danger"></p>
-              <a 
-                class="btn btn-danger"
-                href="index.php?action=show_ticket&id=<?= $ticket['id'] ?>">Détail</a>
+        <div class="col-12">
+          <div class="card" id="custom-card">
+            <div class="row">
+              <div class="col-md-3" id="custom-card-item">
+                <?php if($ticket['image'] == NULL) { ?>
+                  <img src="public/image/ticket.jpg" alt="" id="home-event-img">
+                <?php } else { ?>
+                  <img src="<?= $ticket['image'] ?>" alt="" id="home-event-img">
+                <?php } ?>
+              </div>
+              <div class="col-md-7" id="custom-card-item">
+                <div class="card-body">
+                  <h5 class="card-title mb-3"><?= $ticket['title'] ?></h5>
+                  <p class="card-text mb-3"><?= substr($ticket['overview'], 0, 140); ?> <?= (strlen($ticket['overview']) > 140) ? " ..." : "" ?></p>
+                  <p class="small-text text-danger" style="font-size:larger;"><?= $ticket['montant'] ?> Fcfa</p>
+                </div>
+              </div>
+              <div class="col-md-2" id="custom-card-item" style="display:flex;justify-content:flex-end;">
+                <a 
+                  class="btn btn-danger"
+                  href="index.php?action=show_ticket&id=<?= $ticket['id'] ?>" id="btn-custom">Voir détails</a>
+              </div>
             </div>
           </div>
         </div>
@@ -99,10 +115,20 @@
 
     <!-- Commande Modal -->
     <?php include('View/layout/commande.php') ?>
+    
+    <!-- Footer -->
+    <?php include('View/layout/footer.php') ?>
+
+    
+
 
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
     <script src="public/js/slider.js"></script>
     <script>
       MicroModal.init();

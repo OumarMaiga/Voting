@@ -70,9 +70,34 @@
 
         public function show($id) {
             $ticket = $this->ticket->getById($id);
+            
+            if(!empty($ticket)) {
+                // Formatage de la date
+                if ($ticket['expire'] == NULL) {
+                    $date = "";
+                } else {
+                    $date = date_create($ticket['expire']);
+                    $day = date_format($date, 'd-m-Y');
+                }
+                require('View/ticket/show.php'); 
+            } else {
+                header('location:index.php?action=accueil&msg=ticket_not_fetched');
+                exit;
+            }  
+        }
+
+        public function buy($id) {
+            $ticket = $this->ticket->getById($id);
 
             if(!empty($ticket)) {
-                require('View/ticket/show.php'); 
+                // Formatage de la date
+                if ($ticket['expire'] == NULL) {
+                    $date = "";
+                } else {
+                    $date = date_create($ticket['expire']);
+                    $day = date_format($date, 'd-m-Y');
+                }
+                require('View/ticket/buy.php'); 
             } else {
                 header('location:index.php?action=accueil&msg=ticket_not_fetched');
                 exit;
