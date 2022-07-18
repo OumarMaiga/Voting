@@ -53,12 +53,12 @@
         }
 
         public function getBy($key, $value) {
-            $req = $this->db->query("SELECT * from tickets WHERE $key=$value");
+            $req = $this->db->query("SELECT * from tickets WHERE $key=$value ORDER BY id DESC");
             return $req->fetchAll();
         }
 
         public function getAll() {
-            $req = $this->db->query('SELECT * from tickets');
+            $req = $this->db->query('SELECT * from tickets ORDER BY id DESC');
             return $req->fetchAll();
         }
 
@@ -66,5 +66,10 @@
             $req = $this->db->prepare('DELETE from tickets WHERE id=:id LIMIT 1');
             $req->bindParam(':id', $id);
             return $req;
+        }
+        
+        public function getLast() {
+            $req = $this->db->query('SELECT * from tickets ORDER BY id DESC LIMIT 1');
+            return $req->fetch();
         }
     }

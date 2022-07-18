@@ -173,4 +173,15 @@
             }
         }
         
+        public function paiement($id) {
+            $ticket = $this->ticket->getById($id);
+            if(!empty($ticket)) {
+                header('location:index.php?action=ticket_paiement&msg=ticket_deleted');
+                exit;
+            } else {
+                header('location:index.php?action=accueil&msg=ticket_not_fetched');
+                exit;
+            }
+        }
+        
     }

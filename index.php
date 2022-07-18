@@ -67,6 +67,9 @@
         case  'wave_page':
             $page->wave_page($_GET['event_id'], $_GET['candidat_id']);
             break;
+        case 'paiement_ticket_page':
+            $page->paiement_ticket_page($_GET['ticket_id']);
+            break;
 
 //////////////////////////// PaiementController //////////////////////////////////    
         case  'paiement_orange_money':
@@ -83,6 +86,9 @@
             break;
         case  'paiement_wave':
             $paiement->paiement_wave();
+            break;
+        case  'paiement_ticket':
+            $paiement->paiement_ticket();
             break;
 
 //////////////////////////// CandidatController //////////////////////////////////        

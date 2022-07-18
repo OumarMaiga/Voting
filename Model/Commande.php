@@ -12,9 +12,10 @@
             $this->db = (new DatabaseConnector())->getConnection();
         }
         public function save(Array $inputs) {
-            $req = $this->db->prepare('INSERT INTO commandes (nom, prenom, phone, email, count, user_id, ticket_id, paid, etat, created_at) VALUES (:nom, :prenom, :phone, :email, :count, :user_id, :ticket_id, :paid, :etat, NOW())');
+            $req = $this->db->prepare('INSERT INTO commandes (nom, prenom, code, phone, email, count, user_id, ticket_id, paid, etat, created_at) VALUES (:nom, :prenom, :code, :phone, :email, :count, :user_id, :ticket_id, :paid, :etat, NOW())');
             $req->bindParam(':nom', $inputs['nom']);
             $req->bindParam(':prenom', $inputs['prenom']);
+            $req->bindParam(':code', $inputs['code']);
             $req->bindParam(':phone', $inputs['phone']);
             $req->bindParam(':email', $inputs['email']);
             $req->bindParam(':count', $inputs['count']);
@@ -26,9 +27,10 @@
         }
         
         public function update($id, Array $inputs) {
-            $req = $this->db->prepare('UPDATE commandes SET nom=:nom, prenom=:prenom, phone=:phone, email=:email, count=:count, ticket_id=:ticket_id, paid=:paid, etat=:etat, updated_at=NOW() WHERE id=:id');
+            $req = $this->db->prepare('UPDATE commandes SET nom=:nom, prenom=:prenom, code=:code phone=:phone, email=:email, count=:count, ticket_id=:ticket_id, paid=:paid, etat=:etat, updated_at=NOW() WHERE id=:id');
             $req->bindParam(':nom', $inputs['nom']);
             $req->bindParam(':prenom', $inputs['prenom']);
+            $req->bindParam(':code', $inputs['code']);
             $req->bindParam(':phone', $inputs['phone']);
             $req->bindParam(':email', $inputs['email']);
             $req->bindParam(':count', $inputs['count']);
@@ -47,12 +49,12 @@
         }
 
         public function getBy($key, $value) {
-            $req = $this->db->query("SELECT * from commandes WHERE $key=$value");
+            $req = $this->db->query("SELECT * from commandes WHERE $key=$value ORDER BY id DESC");
             return $req->fetchAll();
         }
 
         public function getAll() {
-            $req = $this->db->query('SELECT * from commandes');
+            $req = $this->db->query('SELECT * from commandes ORDER BY id DESC');
             return $req->fetchAll();
         }
 
@@ -64,6 +66,11 @@
 
         public function ticketCommandeCount($tcket_id) {
             $req = $this->db->query("SELECT SUM(count) as count from commandes WHERE ticket_id=$tcket_id");
+            return $req->fetch();
+        }
+
+        public function getLast() {
+            $req = $this->db->query('SELECT * from commandes ORDER BY id DESC LIMIT 1');
             return $req->fetch();
         }
     }

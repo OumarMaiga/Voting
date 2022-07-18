@@ -43,8 +43,13 @@
             return $req->fetch();
         }
 
+        public function getBy($key, $value) {
+            $req = $this->db->prepare("SELECT * from events WHERE $key=$value ORDER BY id DESC");
+            return $req->fetchAll();
+        }
+
         public function getAll() {
-            $req = $this->db->query('SELECT * from events');
+            $req = $this->db->query('SELECT * from events ORDER BY id DESC');
             return $req->fetchAll();
         }
 

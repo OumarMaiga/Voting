@@ -47,6 +47,7 @@
             <th scope="col">Telephone</th>
             <th scope="col">Nombre</th>
             <th scope="col">Etat</th>
+            <th scope="col">Payer</th>
             <!--<th scope="col">Actions</th>-->
           </tr>
         </thead>
@@ -60,14 +61,30 @@
                     <th scope="row"><?= $n ?></th>
                     <td><?= $commande['prenom'] ?></td>
                     <td><?= $commande['nom'] ?></td>
-                    <td>as01IU</td>
+                    <td><?= $commande['code'] ?></td>
                     <td><?= $commande['email'] ?></td>
                     <td><?= $commande['phone'] ?></td>
                     <td><?= $commande['count'] ?></td>
-                    <td><?= $commande['etat'] ?></td>
-                    <!--<td class="actions">
-                    <a class="actions" href="index.php?action=edit_commande&id=<?= $commande['id'] ?>">Modifier</a>
-                    </td>-->
+                    <td>
+                      <?php
+                          if($commande['etat'] == "precommande") {
+                              echo "<b style=color:green>Pré-commande</b>";
+                          } elseif($commande['etat'] == "commande") {
+                              echo "<b style=color:green>commande</b>";
+                          } elseif($commande['etat'] == "used") {
+                              echo "<b style=color:red>Utilisé</b>";
+                          }
+                      ?>  
+                    </td>
+                    <td>
+                      <?php
+                          if($commande['paid'] == 1) {
+                              echo "<b style=color:green>Oui</b>";
+                          } else {
+                              echo "<b style=color:red>Non</b>";
+                          }
+                      ?>  
+                      </td>
                 </tr>
             <?php } ?>
         </tbody>

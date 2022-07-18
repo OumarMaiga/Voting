@@ -87,4 +87,8 @@
             require('View/page/wave_page.php');
         }  
 
+        public function paiement_ticket_page($ticket_id)
+        {
+            require('View/page/paiement_ticket_page.php');
+        }
     }

@@ -137,4 +137,9 @@
 
             require('View/page/paiement_wave.php');
         }
+
+        public function paiement_ticket()
+        {
+            die('Fontionnalite non disponible ...');
+        }
     }
