@@ -73,4 +73,10 @@
             $req = $this->db->query('SELECT * from commandes ORDER BY id DESC LIMIT 1');
             return $req->fetch();
         }
+
+        public function search($ticket_id, $query) {
+            $req = $this->db->query("SELECT * from commandes WHERE code like '%$query%' OR
+                                     phone like '%$query%' AND ticket_id=$ticket_id");
+            return $req;
+        }
     }

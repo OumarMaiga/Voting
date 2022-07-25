@@ -17,6 +17,11 @@
       crossorigin="anonymous"
     />
     <title>Click event - Admin</title>
+    
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
   </head>
   <body onload="openSection(event, 'Event')">
     
@@ -34,9 +39,15 @@
     </div>
 
     <!-- Participants list Tab content -->
-    <div id="Event" class="tabcontent">
-      <h3 class="header-title"><?= $ticket['title'] ?></h3>
-      <table class="table table-hover mt-4">
+    <div id="Event" class="tabcontent" >
+      <h3 class="header-title" style="padding:0 2rem;">
+        <?= $ticket['title'] ?>
+        <span style="float:right">
+          <input type="text" name="query" placeholder="Recherche" id="query" />
+          <input type="hidden" name="ticket_id" id="ticket_id" value="<?= $_GET['ticket_id'] ?>" />
+        </span>
+      </h3>
+      <table class="table table-hover mt-4" style="padding:0 2rem;">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -51,7 +62,7 @@
             <!--<th scope="col">Actions</th>-->
           </tr>
         </thead>
-        <tbody>
+        <tbody id="search-tbody">
             <?php
             $n = 0;
             foreach ($commandes as $commande) {
@@ -96,5 +107,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="public/js/tabs.js"></script>
+    <script src="public/js/search.js"></script>
   </body>
 </html>

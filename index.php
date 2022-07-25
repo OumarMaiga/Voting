@@ -70,6 +70,9 @@
         case 'paiement_ticket_page':
             $page->paiement_ticket_page($_GET['ticket_id']);
             break;
+        case 'search':
+            $page->search($_GET['ticket_id'], $_GET['query']);
+            break;
 
 //////////////////////////// PaiementController //////////////////////////////////    
         case  'paiement_orange_money':

@@ -6,6 +6,7 @@
     use Model\User;
     use Model\Candidat;
     use Model\Ticket;
+    use Model\Commande;
 
     use API\Wizall;
 
@@ -23,6 +24,7 @@
             $this->wizall = new Wizall;
             $this->candidat = new Candidat;
             $this->ticket = new Ticket;
+            $this->commande = new Commande;
         }
 
         public function accueil() {
@@ -90,5 +92,32 @@
         public function paiement_ticket_page($ticket_id)
         {
             require('View/page/paiement_ticket_page.php');
+        }
+
+        public function search($ticket_id, $query)
+        {
+            $code = 0;
+            $commandes = null;
+
+            if ($query != "") {
+                $request = $this->commande->search($ticket_id, $query);
+            } else {
+                $request = $this->commande->search($ticket_id, $query);
+                //$commandes = $this->commande->getBy('ticket_id', $ticket_id);
+            }
+
+            if ($request->execute()) {
+                $data = $request->fetchAll();
+                $code = 1;
+                $commandes = $data;
+            }
+
+            echo json_encode(
+                array(
+                    'code' => $code,
+                    'commandes' => $commandes
+                )
+            );
+            return;
         }
     }
