@@ -46,7 +46,7 @@
             </div>
         </div>
         <p class="" style="color:#fff;text-align:center;margin-top:2rem">
-            Copyright © 2021 Tout droit reservés | Ce site est fait avec <i class="icon-heart"></i>   par Oumar MAIGA 
+            Copyright © 2021 Tout droit reservés | Ce site est fait <!--avec <i class="icon-heart"></i>-->par Oumar MAIGA 
         </p>
     </div>
 </footer>
