@@ -1,6 +1,6 @@
-<footer class="bg-dark py-5">
+<footer class="bg-dark py-2">
     <div class="container">
-        <div class="row">
+        <div class="row py-3">
             <div class="col-md-6">
                 <h5 class="text-white mb-4">CLICK EVENT</h5>
                 <p class="text-white">
@@ -45,5 +45,8 @@
                 </p>
             </div>
         </div>
+        <p class="" style="color:#fff;text-align:center;margin-top:2rem">
+            Copyright © 2021 Tout droit reservés | Ce site est fait avec <i class="icon-heart"></i>   par Oumar MAIGA 
+        </p>
     </div>
 </footer>
