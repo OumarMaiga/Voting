@@ -7,29 +7,39 @@
 
     <div class="collapse navbar-collapse nav-item-list" id="navbarSupportedContent">
       <?php
-        if(isset($_SESSION['user'])) {
+        if (isset($_SESSION['user']) && ($_SESSION['user']['categories'] == 'admin' || $_SESSION['user']['categories'] == 'partenaire')) {
       ?>
       <ul class="navbar-nav mr-auto">
+        <?php
+          if (isset($_SESSION['user']) && $_SESSION['user']['categories'] == 'admin') {
+        ?>
         <li class="nav-item">
           <a
             class="nav-link text-white"
-            href="index.php?action=index_event">Tableau de bord</a>
+            href="index.php?action=index_event">Evènement</a>
         </li>
         <li class="nav-item">
           <a
             class="nav-link text-white"
-            href="index.php?action=index_ticket">Dsahboard-Ticket</a>
+            href="index.php?action=index_partenaire">Partenaire</a>
         </li>
+        <?php } ?>
         <li class="nav-item">
+          <a
+            class="nav-link text-white"
+            href="index.php?action=index_ticket">Ticket</a>
+        </li>
+        <!--<li class="nav-item">
           <a
             class="nav-link text-white"
             href="index.php?action=get_wizall_token_page">Get Wizall Token</a>
-        </li>
-        <li class="nav-item">
+        </li>-->
+        
+        <!--<li class="nav-item">
           <a
             class="nav-link text-white"
             href="index.php?action=transactions">Transaction</a>
-        </li>
+        </li>-->
         <li class="nav-item">
           <a
             class="btn btn-danger"
@@ -50,7 +60,7 @@
           <a 
             class="btn btn-danger"
             data-micromodal-trigger="login-modal"
-            href="javascript:void(0);">Se connecter</a>
+            href="javascript:void(0);">Connexion</a>
       <?php } ?>
     </div>
   </div>

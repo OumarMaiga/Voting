@@ -163,6 +163,33 @@
         $bgColor = " bg-danger";
     }
 
+    //////////////////// PARTEMAIRE //////////////////// 
+    /* Save | Update*/
+      else if ($msg === "partenaire_created") {
+        $msgText = "Bravo ! &nbsp; Ticket commandé avec succès";
+        $bgColor = " bg-success";
+    } else if ($msg === "partenaire_not_created") {
+        $msgText = "Erreur ! &nbsp; Commande échouée";
+        $bgColor = " bg-danger";
+    } else if ($msg === "partenaire_updated") {
+        $msgText = "Bravo ! &nbsp; Partenaire a bien été mise à jour";
+        $bgColor = " bg-success";
+    } else if ($msg === "partenaire_not_updated") {
+        $msgText = "Erreur ! &nbsp; Mise à jour de partenaire échouée";
+        $bgColor = " bg-danger";
+    /* Show | Edit */
+    } else if ($msg === "partenaire_not_fetched") {
+        $msgText = "Erreur ! &nbsp; Campagne non trouvé";
+        $bgColor = " bg-danger";
+    /* Delete */
+    } else if ($msg === "partenaire_deleted") {
+        $msgText = "Bravo ! &nbsp; Campagne supprimé avec succès";
+        $bgColor = " bg-success";
+    } else if ($msg === "commande_not_deleted") {
+        $msgText = "Erreur ! &nbsp; Suppression de l'évènement échouée";
+        $bgColor = " bg-danger";
+    } 
+
     //////////////////// PAIEMENT //////////////////// 
     /* Paiement wizall */
     else if ($msg === "error_paiement_invalid_user_account") {

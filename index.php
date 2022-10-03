@@ -12,6 +12,7 @@
     use Controller\PageController;
     use Controller\PaiementController;
     use Controller\VoteController;
+    use Controller\PartenaireController;
     
     $auth = new AuthController;
     $user = new UserController;
@@ -22,6 +23,7 @@
     $event = new EventController;
     $vote = new VoteController;
     $paiement = new PaiementController;
+    $partenaire = new PartenaireController;
 
     if(isset($_GET['action'])) {
         $action = $_GET['action'];
@@ -193,7 +195,30 @@
         case  'delete_commande':
             $commande->delete($_GET['id']);
             break;
-                      
+        
+//////////////////////////// PartenaireController //////////////////////////////////        
+        case  'index_partenaire':
+            $partenaire->index();
+            break;
+        case  'create_partenaire':
+            $partenaire->create();
+            break;
+        case  'save_partenaire':
+            $partenaire->save();
+            break;
+        case  'edit_partenaire':
+            $partenaire->edit($_GET['id']);
+            break;
+        case  'update_partenaire':
+            $partenaire->update($_GET['id'], );
+            break;
+        case  'show_partenaire':
+            $partenaire->show($_GET['id']);
+            break;
+        case  'delete_partenaire':
+            $partenaire->delete($_GET['id']);
+            break;
+                    
         default:
             $page->accueil();
     }
