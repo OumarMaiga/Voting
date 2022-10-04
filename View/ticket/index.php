@@ -46,7 +46,7 @@
     <div id="Event" class="tabcontent">
       <h3 class="header-title">Ticket à vendre</h3>
       <?php
-          if (isset($_SESSION['user']) && $_SESSION['user']['categories'] == 'admin') {
+          if (isset($_SESSION['user']) && $_SESSION['user']['categorie'] == 'admin') {
         ?>
         <a href="index.php?action=create_ticket">
           <button class="btn btn-outline-primary add-btn mt-4">
@@ -107,7 +107,7 @@
                         <ion-icon name="eye" style="font-size:24px;color:gray;" title="Voir"></ion-icon>
                       </a>
                       <?php
-                        if (isset($_SESSION['user']) && $_SESSION['user']['categories'] == 'admin') {
+                        if (isset($_SESSION['user']) && $_SESSION['user']['categorie'] == 'admin') {
                       ?>
                       <a class="action-icon" href="index.php?action=edit_ticket&id=<?= $ticket['id'] ?>">
                         <ion-icon name="create" style="font-size:24px;color:orange;" title="Modifier"></ion-icon>

@@ -9,11 +9,11 @@
 
     <div class="collapse navbar-collapse nav-item-list" id="navbarSupportedContent">
       <?php
-        if (isset($_SESSION['user']) && ($_SESSION['user']['categories'] == 'admin' || $_SESSION['user']['categories'] == 'partenaire')) {
+        if (isset($_SESSION['user']) && ($_SESSION['user']['categorie'] == 'admin' || $_SESSION['user']['categorie'] == 'partenaire')) {
       ?>
       <ul class="navbar-nav mr-auto">
         <?php
-          if (isset($_SESSION['user']) && $_SESSION['user']['categories'] == 'admin') {
+          if (isset($_SESSION['user']) && $_SESSION['user']['categorie'] == 'admin') {
         ?>
         <li class="nav-item">
           <a

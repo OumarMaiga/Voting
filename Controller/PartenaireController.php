@@ -3,17 +3,14 @@
     namespace Controller;
 
     use Model\User;
-    use API\Wizall;
 
     class PartenaireController {
 
         
         private $partenaire;
-        private $wizall;
         
         public function __construct() {
             $this->partenaire = new User;
-            $this->wizall = new Wizall;
         }
 
         public function index() {
@@ -40,7 +37,7 @@
                 exit;
             }
             $_POST['etat'] = 1;
-            $_POST['categories'] = 'partenaire';
+            $_POST['categorie'] = 'partenaire';
             $partenaire = $this->partenaire->save($_POST);
             if($partenaire->execute()) {
                 $partenaire = $this->partenaire->getLast();

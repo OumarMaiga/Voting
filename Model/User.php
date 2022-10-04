@@ -36,37 +36,24 @@
             return $req;
         }
 
-        /* Verification du token */
-        public function checkToken($token) {
-            $req = $this->db->prepare("SELECT * FROM users WHERE token=:token LIMIT 1");
-            $req->bindParam(':token', $token);
-            return $req;
-        }
-
         public function save($inputs) {
             $password = md5($inputs['password']);
-            $req = $this->db->prepare('INSERT INTO users (prenom, nom, email, phone, password, categories, etat, login, created_at, updated_at)VALUES(:prenom, :nom, :email, :phone, :password, :categories, :etat, :login, NOW(), NOW())');
+            $req = $this->db->prepare('INSERT INTO users (prenom, nom, email, phone, password, categorie, etat, login, created_at, updated_at)VALUES(:prenom, :nom, :email, :phone, :password, :categorie, :etat, :login, NOW(), NOW())');
             $req->bindParam(':prenom', $inputs['prenom']);
             $req->bindParam(':nom', $inputs['nom']);
             $req->bindParam(':phone', $inputs['phone']);
             $req->bindParam(':email', $inputs['email']);
-            $req->bindParam(':categories', $inputs['categories']);
+            $req->bindParam(':categorie', $inputs['categorie']);
             $req->bindParam(':etat', $inputs['etat']);
             $req->bindParam(':password', $password);
             $req->bindParam(':login', $inputs['login']);
             return $req;
         }
 
-        public function getUser($token) {
-            $req = $this->db->prepare('SELECT * FROM users WHERE token=:token LIMIT 1');
-            $req->bindParam(':token', $token);
-            return $req;
-        }
-
         public function getPartenaires() {
-            $categories = 'partenaire';
-            $req = $this->db->prepare('SELECT * FROM users WHERE categories=:categories');
-            $req->bindParam(':categories', $categories);
+            $categorie = 'partenaire';
+            $req = $this->db->prepare('SELECT * FROM users WHERE categorie=:categorie');
+            $req->bindParam(':categorie', $categorie);
             return $req;
         }
         

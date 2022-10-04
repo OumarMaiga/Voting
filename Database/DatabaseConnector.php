@@ -16,7 +16,7 @@
             // Serveur
             /*$user = "fdbc045_Oumar";
             $password = 'Hasseye97';
-            $dbName = 'fdbc045_ckick_event';
+            $dbName = 'fdbc045_click_event';
             $host = 'localhost';*/
             
             try {
