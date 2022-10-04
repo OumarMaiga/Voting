@@ -24,7 +24,9 @@ a {
   line-height: 1.25;
   color: #00449e;
 }
-
+.logo {
+  height: 60px;
+}
 .logo-partenaire {
   height: 120px;
   object-fit: contain
@@ -158,6 +160,17 @@ a {
 
 .nav-item-list {
   justify-content: end;
+}
+
+/*  DASHBOARD ACTION  */
+.action-icon-container {
+  display: flex;
+  justify-content: start;
+}
+.action-icon {
+  font-size: 24px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* View Tablette -- Medium devices (tablets, 768px and up) */

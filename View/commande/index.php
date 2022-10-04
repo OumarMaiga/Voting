@@ -16,6 +16,9 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!-- ICON -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <title>Click event - Admin</title>
     
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"
@@ -102,10 +105,6 @@
       </table>
     </div>
 
-    <script
-      src="https://kit.fontawesome.com/64d67fd16e.js"
-      crossorigin="anonymous"
-    ></script>
     <script src="public/js/tabs.js"></script>
     <script src="public/js/search.js"></script>
   </body>

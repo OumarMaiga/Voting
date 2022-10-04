@@ -12,6 +12,9 @@
     rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous"/>
+    <!-- ICON -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <title>Click event - Admin</title>
 </head>
 <body onload="openSection(event, 'Event')">
@@ -67,18 +70,20 @@
                     <td><?= $event['titre'] ?></td>
                     <td><?= $event['categorie'] ?></td>
                     <td><?= $date ?></td>
-                    <td class="icon">
-                    <a href="index.php?action=index_candidat&event_id=<?= $event['id'] ?>">
-                        <i class="far fa-eye fa-2x"></i>
-                    </a>
+                    <td class="action-icon-container">
+                      <a class="action-icon" href="index.php?action=index_candidat&event_id=<?= $event['id'] ?>">
+                        <ion-icon name="eye" style="font-size:24px;color:gray;" title="Voir les participants"></ion-icon>
+                      </a>
                     </td>
                     <?php if($etat) { ?>
                       <td><button class="btn btn-success">En cours</button></td>
                     <?php } else {?>
                       <td><button class="btn btn-warning">Terminer</button></td>
                     <?php } ?>
-                    <td class="actions">
-                    <a class="actions" href="index.php?action=edit_event&id=<?= $event['id'] ?>">Modifier</a>
+                    <td class="action-icon-container">
+                      <a class="action-icon" href="index.php?action=edit_event&id=<?= $event['id'] ?>">
+                        <ion-icon name="create" style="font-size:24px;color:orange;" title="Modifier"></ion-icon>
+                      </a>
                     </td>
                 </tr>
             <?php } ?>

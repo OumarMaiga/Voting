@@ -16,6 +16,9 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!-- ICON -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <title>Click event - Admin</title>
 
     <script
@@ -42,11 +45,15 @@
     <!-- Participants list Tab content -->
     <div id="Event" class="tabcontent">
       <h3 class="header-title">Ticket à vendre</h3>
-      <a href="index.php?action=create_ticket">
-        <button class="btn btn-outline-primary add-btn mt-4">
-          <i class="fas fa-plus"></i> &nbsp;Ajouter
-        </button>
-      </a>
+      <?php
+          if (isset($_SESSION['user']) && $_SESSION['user']['categories'] == 'admin') {
+        ?>
+        <a href="index.php?action=create_ticket">
+          <button class="btn btn-outline-primary add-btn mt-4">
+            <i class="fas fa-plus"></i> &nbsp;Ajouter
+          </button>
+        </a>
+        <?php } ?>
       <table class="table table-hover mt-4">
         <thead>
           <tr>
@@ -54,7 +61,7 @@
             <th scope="col">Titre</th>
             <th scope="col">Description</th>
             <th scope="col">Lieu</th>
-            <th scope="col">Nombre</th>
+            <th scope="col">Ticket disponible</th>
             <th scope="col">Commande</th>
             <th scope="col">Montant</th>
             <th scope="col">Date de fin</th>
@@ -95,12 +102,20 @@
                     </td>
                     <td><?= $ticket['montant'] ?> Fcfa</td>
                     <td><?= $date ?></td>
-                    <td class="actions">
-                      <a href="index.php?action=show_ticket&ticket_id=<?= $ticket['id'] ?>">
-                          <i class="far fa-eye fa-2x"></i>
+                    <td class="action-icon-container">
+                      <a class="action-icon" href="index.php?action=show_ticket&ticket_id=<?= $ticket['id'] ?>">
+                        <ion-icon name="eye" style="font-size:24px;color:gray;" title="Voir"></ion-icon>
                       </a>
-                      <a class="actions" href="index.php?action=edit_ticket&id=<?= $ticket['id'] ?>">Modifier</a>
-                      <a class="actions" href="index.php?action=delete_ticket&id=<?= $ticket['id'] ?>">Supprimer</a>
+                      <?php
+                        if (isset($_SESSION['user']) && $_SESSION['user']['categories'] == 'admin') {
+                      ?>
+                      <a class="action-icon" href="index.php?action=edit_ticket&id=<?= $ticket['id'] ?>">
+                        <ion-icon name="create" style="font-size:24px;color:orange;" title="Modifier"></ion-icon>
+                      </a>
+                      <a class="action-icon" href="index.php?action=delete_ticket&id=<?= $ticket['id'] ?>">
+                        <ion-icon name="remove-circle-outline" style="font-size:24px;color:red;" title="Supprimer"></ion-icon>
+                      </a>
+                      <?php } ?>
                     </td>
                 </tr>
             <?php } ?>

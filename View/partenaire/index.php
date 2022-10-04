@@ -12,6 +12,11 @@
     rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous"/>
+    
+    <!-- ICON -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+
     <title>Click partenaire - Admin</title>
     <script src="public/js/tabs.js"></script>
 </head>
@@ -41,6 +46,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Login</th>
             <th scope="col">Prenom et nom</th>
             <th scope="col">Email</th>
             <th scope="col">Telephone</th>
@@ -57,6 +63,7 @@
             ?>
                 <tr>
                     <th scope="row"><?= $n ?></th>
+                    <td><?= $partenaire['login'] ?></td>
                     <td><?= $partenaire['prenom'].' '.$partenaire['nom'] ?></td>
                     <td><?= $partenaire['email'] ?></td>
                     <td><?= $partenaire['phone'] ?></td>
@@ -66,8 +73,10 @@
                     <?php } else {?>
                       <td><button class="btn btn-danger">Désactiver</button></td>
                     <?php } ?>
-                    <td class="actions">
-                    <a class="actions" href="index.php?action=edit_partenaire&id=<?= $partenaire['login'] ?>">Modifier</a>
+                    <td class="action-icon-container">
+                      <a class="action-icon" href="index.php?action=edit_partenaire&id=<?= $partenaire['login'] ?>">
+                        <ion-icon name="create" style="font-size:24px;color:orange;" title="Modifier"></ion-icon>
+                      </a>
                     </td>
                 </tr>
             <?php } ?>

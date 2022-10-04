@@ -210,7 +210,7 @@
             $partenaire->edit($_GET['id']);
             break;
         case  'update_partenaire':
-            $partenaire->update($_GET['id'], );
+            $partenaire->update($_GET['id']);
             break;
         case  'show_partenaire':
             $partenaire->show($_GET['id']);
