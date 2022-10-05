@@ -22,7 +22,9 @@
             $req->bindParam(':user_id', $_SESSION['user']['id']);
             $req->bindParam(':expire', $inputs['expire']);
             $req->bindParam(':lieu', $inputs['lieu']);
-            return $req;
+            $req->execute();
+            $ticket = $this->getById($this->db->lastInsertId());
+            return $ticket;
         }
         
         public function update($id, Array $inputs) {
@@ -71,5 +73,30 @@
         public function getLast() {
             $req = $this->db->query('SELECT * from tickets ORDER BY id DESC LIMIT 1');
             return $req->fetch();
+        }
+        
+        public function save_ticket_user($inputs) {
+            // On enregistre les nouveau ticket_user dans la base de donnees
+            $req = $this->db->prepare('INSERT INTO ticket_user (ticket_id, user_id)VALUES(:ticket_id, :user_id)');
+            $req->bindParam(':ticket_id', $inputs['ticket_id']);
+            $req->bindParam(':user_id', $inputs['user_id']);
+            $data = $req->execute();
+            return $data;
+        }
+
+        public function delete_ticket_user($ticket_id) {
+            $req = $this->db->prepare('DELETE from ticket_user WHERE ticket_id=:ticket_id');
+            $req->bindParam(':ticket_id', $ticket_id);
+            return $req;
+        }
+        
+        public function getByPartenaire($user_id) {            
+            $req = $this->db->prepare('SELECT tickets.*
+                from ticket_user 
+                LEFT JOIN tickets ON ticket_user.ticket_id = tickets.id 
+                WHERE ticket_user.user_id=:user_id');
+            $req->bindParam(':user_id', $user_id);
+            $req->execute();
+            return $req->fetchAll();
         }
     }

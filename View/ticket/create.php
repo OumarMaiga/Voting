@@ -63,7 +63,7 @@
             />
           </div>
           <div class="col-md-4">
-            <label for="expire" class="form-label">Fin de campagne</label>
+            <label for="expire" class="form-label">Date du concert</label>
             <input
               type="date"
               class="form-control"
@@ -80,6 +80,16 @@
               id="image"
               accept=".jpg, .jpeg, .png"
             />
+          </div>
+          <div class="col-md-4">
+            <label for="partenaire" class="form-label">Partenaires</label>
+            <select name="partenaire[]" id="partenaire" class="form-control" multiple size="4">
+              <?php
+                foreach($partenaires as $partenaire) {
+              ?>
+              <option value="<?= $partenaire['id'] ?>"><?= $partenaire['login'] ?></option>
+              <?php } ?>
+            </select>
           </div>
           <div class="col-12 mt-4">
             <button type="submit" class="btn btn-primary">

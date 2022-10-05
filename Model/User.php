@@ -21,19 +21,19 @@
         public function getById($email) {
             $req = $this->db->prepare('SELECT * from users WHERE id=:id LIMIT 1');
             $req->bindParam(':id', $id);
-            return $req;
+            return $req->fetch();
         }
 
         public function getByEmail($email) {
             $req = $this->db->prepare('SELECT * from users WHERE email=:email LIMIT 1');
             $req->bindParam(':email', $email);
-            return $req;
+            return $req->fetchAll();
         }
 
         public function getByPhone($phone) {
             $req = $this->db->prepare('SELECT * from users WHERE phone=:phone LIMIT 1');
             $req->bindParam(':phone', $phone);
-            return $req;
+            return $req->fetchAll();
         }
 
         public function save($inputs) {
@@ -54,7 +54,8 @@
             $categorie = 'partenaire';
             $req = $this->db->prepare('SELECT * FROM users WHERE categorie=:categorie');
             $req->bindParam(':categorie', $categorie);
-            return $req;
+            $req->execute();
+            return $req->fetchAll();
         }
         
         public function getLast() {

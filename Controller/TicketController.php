@@ -3,24 +3,44 @@
     namespace Controller;
 
     use Model\Ticket;
+    use Model\Event;
+    use Model\user;
     use ImageUploader;
 
     class TicketController {
         
         private $ticket;
+        private $event;
         private $image;
         
         public function __construct() {
             $this->ticket = new Ticket;
+            $this->event = new Event;
+            $this->user = new User;
             $this->image = new ImageUploader;
         }
 
         public function index() {
-            $tickets = $this->ticket->getAll();
+            if (isset($_SESSION['user'])) {
+                if ($_SESSION['user']['categorie'] == 'admin') 
+                {
+                    $tickets = $this->ticket->getAll();
+                }
+                elseif ($_SESSION['user']['categorie'] == 'partenaire') 
+                {
+                    $tickets = $this->ticket->getByPartenaire($_SESSION['user']['id']);
+                }
+            } else {
+                $events = $this->event->getAll();
+                $tickets = $this->ticket->getAll();
+                header('location:index.php?action=accueil');
+            }
+
             require('View/ticket/index.php');
         }
         
         public function create() {
+            $partenaires = $this->user->getPartenaires();
             require('View/ticket/create.php');                    
         }
 
@@ -58,7 +78,15 @@
 
             $ticket = $this->ticket->save($_POST);
             
-            if($ticket->execute()) {
+            if($ticket) {
+                //On enregistre les partenaires lié au ticket
+                foreach ($_POST['partenaire'] as $user_id) {
+                    $inputs = array(
+                        'ticket_id' => $ticket['id'],
+                        'user_id' => $user_id
+                    );
+                    $this->ticket->save_ticket_user($inputs);
+                }
                 header('location:index.php?action=index_ticket&msg=ticket_created');
                 exit;
             } else {
@@ -106,7 +134,8 @@
 
         public function edit($id) {   
             $ticket = $this->ticket->getById($id);
-            
+            $partenaires = $this->user->getPartenaires();
+
             if(!empty($ticket)) {
                 // Formatage de la date
                 if ($ticket['expire'] == NULL) {
@@ -154,6 +183,19 @@
 
             $ticket = $this->ticket->update($id, $_POST);
             if($ticket->execute()) {
+                //On supprime les partenaires lié au ticket
+                $ticket_user_deleted = $this->ticket->delete_ticket_user($id);
+                if ($ticket_user_deleted->execute()) {
+                    //On enregistre les partenaires lié au ticket
+                    foreach ($_POST['partenaire'] as $user_id) {
+                        $inputs = array(
+                            'ticket_id' => $id,
+                            'user_id' => $user_id
+                        );
+                        $this->ticket->save_ticket_user($inputs);
+                    }
+                }
+
                 header('location:index.php?action=index_ticket&msg=ticket_updated');
                 exit;
             } else {

@@ -14,9 +14,7 @@
         }
 
         public function index() {
-            $req = $this->partenaire->getPartenaires();
-            $req->execute();
-            $partenaires = $req->fetchAll();
+            $partenaires = $this->partenaire->getPartenaires();
             require('View/partenaire/index.php');
         }
 
