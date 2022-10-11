@@ -103,7 +103,6 @@
                 $request = $this->commande->search($ticket_id, $query);
             } else {
                 $request = $this->commande->search($ticket_id, $query);
-                //$commandes = $this->commande->getBy('ticket_id', $ticket_id);
             }
 
             if ($request->execute()) {

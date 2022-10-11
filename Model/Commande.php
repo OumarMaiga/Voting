@@ -75,8 +75,8 @@
         }
 
         public function search($ticket_id, $query) {
-            $req = $this->db->query("SELECT * from commandes WHERE code like '%$query%' OR
-                                     phone like '%$query%' AND ticket_id=$ticket_id");
+            $req = $this->db->query("SELECT * from commandes WHERE code like '%$query%' AND ticket_id=$ticket_id");
+
             return $req;
         }
     }
