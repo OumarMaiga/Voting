@@ -16,6 +16,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click event | Event</title>
   </head>
   <body>

@@ -19,6 +19,8 @@
     <!-- ICON -->
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click event - Admin</title>
 
     <script

@@ -55,10 +55,10 @@
                 $_POST['commande_id'] = $commande['id'];
                 $_POST['ticket_montant'] = $ticket['montant'];
                 $_SESSION['commande'] = $_POST;
-                $diff = $ticket['count'] - $_POST['count'];
+                /*$diff = $ticket['count'] - $_POST['count'];
                 $count = $diff;
                 $response = $this->ticket->update_count($ticket_id, $count);
-                $response->execute();
+                $response->execute();*/
                 header('location:index.php?action=paiement_ticket_page&ticket_id='.$ticket_id.'&msg=commande_created');
                 exit;
             } else {
@@ -79,7 +79,7 @@
             }  
         }
 
-        public function edit($id) {   
+        public function edit($id) {
             $commande = $this->commande->getById($id);
             
             if(!empty($commande)) {
@@ -110,6 +110,19 @@
                 exit;
             } else {
                 header('location:index.php?action=show_commande&id='.$id.'&msg=commande_not_deleted');
+                exit;
+            }
+        }
+
+        public function consommer($id) {
+            $commande = $this->commande->getById($id);
+            $ticket_id = $commande['ticket_id'];
+            $commande = $this->commande->consommer($id);
+            if($commande->execute()) {
+                header('location:index.php?action=index_commande&ticket_id='.$ticket_id.'&msg=commande_consommer');
+                exit;
+            } else {
+                header('location:index.php?action=index_commande&ticket_id='.$ticket_id.'&msg=commande_not_consommer');
                 exit;
             }
         }

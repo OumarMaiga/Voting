@@ -19,11 +19,8 @@
     <!-- ICON -->
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click event - Admin</title>
-    
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
 
   </head>
   <body onload="openSection(event, 'Event')">
@@ -65,7 +62,7 @@
               <th scope="col">Nombre</th>
               <th scope="col">Etat</th>
               <th scope="col">Payer</th>
-              <!--<th scope="col">Actions</th>-->
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody id="search-tbody">
@@ -101,6 +98,15 @@
                                 echo "<b style=color:red>Non</b>";
                             }
                         ?>  
+                        </td>
+                      <td>
+                        <?php
+                            if($commande['used'] != 1) {
+                          ?>
+                            <a href='index.php?action=consommer_commande&id=<?= $commande['id'] ?>' onclick="return confirm('Voulez-vous valider la consommation du ticket ?')"><button type='submit' class='btn btn-success'>Valider</button></a>
+                          <?php } else { ?>
+                              <a href='#'><button type='submit' class='btn btn-secondary' disabled>Comsommer</button></a>
+                          <?php } ?>
                         </td>
                   </tr>
               <?php } ?>

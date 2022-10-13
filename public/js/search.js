@@ -45,6 +45,12 @@ $(document).ready(function() {
               paid_color = "red";
             }
 
+            if(commande.used != 1) {
+              commande.used = "<a href='index.php?action=consommer_commande&id=" + commande['id'] + "' onclick=return confirm('Voulez-vous valider la consommation du ticket ?')><button type='submit' class='btn btn-success'>Valider</button></a>";
+            } else {
+              commande.used = "<a href='#'><button type='submit' class='btn btn-secondary' disabled>Comsommer</button></a>";
+            }
+            
             tbody.append (
                 '<tr>'+
                     '<th scope="row">' + n + '</th>'+
@@ -56,6 +62,8 @@ $(document).ready(function() {
                     '<td>' + commande.count + '</td>'+
                     '<td> <b style=color:'+etat_color+'>'+commande.etat + '</b> </td>'+
                     '<td> <b style=color:'+paid_color+'>'+commande.paid+'</b> </td>'+
+                    '<td>'+commande.used+'</td>'+
+                    
                 '</tr>'
             );
 

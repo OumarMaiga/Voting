@@ -29,10 +29,10 @@
             <div class="col-md-2">
                 <h5 class="text-white mb-4">Contacts</h5>
                 <p class="text-white">
-                    223 99 99 99 99
+                    223 76 62 33 72
                 </p>
                 <p class="text-white">
-                    223 99 99 99 99
+                    223 71 31 65 44
                 </p>
             </div>
             <div class="col-md-2">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <p class="" style="color:#fff;text-align:center;margin-top:2rem">
-            Copyright © 2021 Tout droit reservés | Ce site est fait <!--avec <i class="icon-heart"></i>-->par Oumar MAIGA 
+            Copyright © 2021 Tout droit reservés | Ce site est fait <!--avec <i class="icon-heart"></i>-->par <a href="http://oumarmaiga.dev" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 text-white"> Oumar MAIGA </a> 
         </p>
     </div>
 </footer>

@@ -16,8 +16,8 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click event | Event</title>
-    <script src="public/js/tabs.js"></script>
   </head>
   <body>
     <?php include('View/layout/navigation.php') ?>
@@ -107,9 +107,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
     <script src="public/js/slider.js"></script>
-    <script>
-      MicroModal.init();
-    </script>
+    <script src="public/js/tabs.js"></script>
     <script>
       MicroModal.init();
 

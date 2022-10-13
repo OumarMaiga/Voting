@@ -76,7 +76,12 @@
 
         public function search($ticket_id, $query) {
             $req = $this->db->query("SELECT * from commandes WHERE code like '%$query%' AND ticket_id=$ticket_id");
-
+            return $req;
+        }
+        
+        public function consommer($id) {
+            $req = $this->db->prepare('UPDATE commandes SET used=1, paid=1 WHERE id=:id');
+            $req->bindParam(':id', $id);
             return $req;
         }
     }

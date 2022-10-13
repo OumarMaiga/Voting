@@ -195,6 +195,9 @@
         case  'delete_commande':
             $commande->delete($_GET['id']);
             break;
+        case  'consommer_commande':
+            $commande->consommer($_GET['id']);
+            break;
         
 //////////////////////////// PartenaireController //////////////////////////////////        
         case  'index_partenaire':

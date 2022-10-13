@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
     
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click event | Ticket</title>
 </head>
 <body><?php include('View/layout/navigation.php') ?>

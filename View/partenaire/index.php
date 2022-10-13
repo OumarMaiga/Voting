@@ -17,6 +17,7 @@
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
 
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click partenaire - Admin</title>
     <script src="public/js/tabs.js"></script>
 </head>

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
     
+    <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click event | Ticket</title>
 </head>
 <body><?php include('View/layout/navigation.php') ?>
@@ -65,11 +66,11 @@
               <div class="row col-12">
                 <div class="col-md-6">
                     <label for="nom" class="form-label">Nom</label>
-                    <input type="text" class="form-control" name="nom" id="nom" />
+                    <input type="text" class="form-control" name="nom" id="nom" required/>
                 </div>
                 <div class="col-md-6">
                     <label for="prenom" class="form-label">Prénom</label>
-                    <input type="text" class="form-control" name="prenom" id="prenom" />
+                    <input type="text" class="form-control" name="prenom" id="prenom" required/>
                 </div>
               </div>
               <div class="row col-12">
@@ -84,14 +85,14 @@
                 </div>
                 <div class="col-md-6">
                     <label for="phone" class="form-label">Telephone</label>
-                    <input type="text" class="form-control" name="phone" id="phone" />
+                    <input type="text" class="form-control" name="phone" id="phone" required/>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
                     
                   <label for="count" class="form-label">Nombre de ticket</label>
-                  <input type="number" min="1" max="100" class="form-control" name="count" id="count" value="1"/>
+                  <input type="number" min="1" max="<?= $ticket['count'] ?>" class="form-control" name="count" id="count" value="1"/>
                 </div>
                 <div class="d-grid gap-2 row col-12 mx-auto mt-4">
                   <button type="submit" class="btn btn-primary">
