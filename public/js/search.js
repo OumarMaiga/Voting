@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
     
-  jQuery('#query').on('input', function(e){
+  jQuery('#query').on('input', function(e) {
     let ticket_id = $("#ticket_id").val();
     let query = $("#query").val();
     
@@ -46,9 +46,9 @@ $(document).ready(function() {
             }
 
             if(commande.used != 1) {
-              commande.used = "<a href='index.php?action=consommer_commande&id=" + commande['id'] + "' onclick=return confirm('Voulez-vous valider la consommation du ticket ?')><button type='submit' class='btn btn-success'>Valider</button></a>";
+              commande.used = '<button type="submit" class="btn btn-success valider" value=' + commande['id'] + '>Valider</button>';
             } else {
-              commande.used = "<a href='#'><button type='submit' class='btn btn-secondary' disabled>Comsommer</button></a>";
+              commande.used = "<button type='submit' class='btn btn-secondary' disabled>Comsommer</button>";
             }
             
             tbody.append (
@@ -68,9 +68,21 @@ $(document).ready(function() {
             );
 
           }
+          /** Valider-ticket File */
+          valider = document.getElementsByClassName('valider');
+          for(var x=0; x < valider.length; x++)
+          {
+            id = valider[x].value;
+            valider[x].addEventListener('click', function (e) {
+              if( confirm('Voulez-vous valider la consommation du ticket ?') ) {
+                return window.location.href = 'index.php?action=consommer_commande&id=' + id
+              };
+            });
+          }
         }
       }
     });
+
   })
 
 })

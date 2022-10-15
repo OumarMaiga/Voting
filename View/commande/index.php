@@ -99,13 +99,13 @@
                             }
                         ?>  
                         </td>
-                      <td>
-                        <?php
+                        <td>
+                          <?php
                             if($commande['used'] != 1) {
                           ?>
-                            <a href='index.php?action=consommer_commande&id=<?= $commande['id'] ?>' onclick="return confirm('Voulez-vous valider la consommation du ticket ?')"><button type='submit' class='btn btn-success'>Valider</button></a>
+                            <button type='submit' class='btn btn-success valider' value="<?= $commande['id'] ?>">Valider</button>
                           <?php } else { ?>
-                              <a href='#'><button type='submit' class='btn btn-secondary' disabled>Comsommer</button></a>
+                              <button type='submit' class='btn btn-secondary' disabled>Comsommer</button>
                           <?php } ?>
                         </td>
                   </tr>
@@ -125,6 +125,8 @@
     <script src="public/js/slider.js"></script>
     <script src="public/js/tabs.js"></script>
     <script src="public/js/search.js"></script>
+    <script src="public/js/valider-ticket.js"></script>
+    <script src="">validerTicket()</script>
     <script>
       MicroModal.init();
     </script>
