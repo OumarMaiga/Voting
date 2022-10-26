@@ -18,7 +18,7 @@
     $user = new UserController;
     $page = new PageController;
     $candidat = new CandidatController;
-    $ticket = new ticketController;
+    $ticket = new TicketController;
     $commande = new CommandeController;
     $event = new EventController;
     $vote = new VoteController;

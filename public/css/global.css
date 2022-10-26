@@ -54,7 +54,7 @@ a {
 
 #home-event-img {
   height: 200px;
-  object-fit: cover;
+  /*object-fit: cover;*/
   width: 100%;
 }
 
@@ -65,7 +65,7 @@ a {
 
 #show-event-img {
   height: 460px;
-  object-fit: cover;
+  /*object-fit: cover;*/
 }
 
 .title {

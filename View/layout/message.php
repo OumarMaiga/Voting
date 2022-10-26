@@ -218,6 +218,12 @@
     } else if ($msg === "paiement_success") {
         $msgText = "Bravo ! &nbsp; Merci pour le vote";
         $bgColor = " bg-success";
+    } else if ($msg === "paiement_ticket_echec") {
+        $msgText = "Erreur ! &nbsp; Paiement echoué. Veuillez ressayer s'il vous plait";
+        $bgColor = " bg-danger";
+    } else if ($msg === "paiement_ticket_success") {
+        $msgText = "Bravo ! &nbsp; Paiement valide. Veuillez noter le code de votre ticket commandé (".$_GET['commande_code'].")";
+        $bgColor = " bg-success";
     } else {
         $msgText = "";
         $bgColor = " bg-secondary";

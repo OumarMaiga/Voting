@@ -53,7 +53,7 @@
             if($commande->execute()) {
                 $commande = $this->commande->getLast();
                 $_POST['commande_id'] = $commande['id'];
-                $_POST['ticket_montant'] = $ticket['montant'];
+                $_POST['ticket_montant'] = $ticket['montant'] * $commande['count'];
                 $_SESSION['commande'] = $_POST;
                 /*$diff = $ticket['count'] - $_POST['count'];
                 $count = $diff;

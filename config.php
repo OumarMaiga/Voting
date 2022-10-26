@@ -1,5 +1,5 @@
 <?php
     
-    //global.SERVER_ADDRESS = 'https://voting.com'; // PROD
-    $serveur = 'localhost/voting'; // Local
+    //$SERVER_ADDRESS = 'https://click-events.net'; // PROD
+    $SERVER_ADDRESS = 'localhost/click-events'; // Local
 ?>

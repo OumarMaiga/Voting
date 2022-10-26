@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
     <link rel="icon" href="public/image/logo-black.png" type="image/icon type">
     <title>Click event | Paiement</title>
+    
   </head>
   <body>
     <?php include('View/layout/navigation.php') ?>
@@ -34,16 +35,24 @@
             <form
               action="index.php?action=paiement_ticket"
               method="post"
-              enctype="multipart/form-data"
               class="row g-3 mt-4"
+              id="paiement-form"
             >
               <div class="col-12">
-                <label for="client_number" class="form-label">Number client</label>
-                <input type="text" class="form-control" name="client_number" id="client_number" value="778044429" />
-              </div>
-              <div class="col-12">
-                <label for="point" class="form-label">Point</label>
-                <input type="text" class="form-control" name="point" id="point" value="<?= $_SESSION['commande']['ticket_montant'] ?>" readonly/>
+                <!--<input id="montant" class="form-control" type="text" name="montant" value="<?= $_SESSION['commande']['ticket_montant'] ?>" readonly />-->
+                <input id="montant" class="form-control" type="text" name="montant" value="100" readonly />
+                <input id="commande_id" class="form-control" type="hidden" name="commande_id" value="<?= $_SESSION['commande']['commande_id'] ?>" readonly />
+                <input id="code" class="form-control" type="hidden" name="code" value="<?= $_SESSION['commande']['code'] ?>" readonly />
+                <input id="ticket_id" class="form-control" type="hidden" name="ticket_id" value="<?= $_SESSION['commande']['ticket_id'] ?>" readonly />
+                <input id="customer_name" class="form-control" type="hidden" name="customer_name" value="" readonly />
+                <input id="customer_surname" class="form-control" type="hidden" name="customer_surname" value="" readonly />
+                <input id="customer_email" class="form-control" type="hidden" name="customer_email" value="" readonly />
+                <input id="customer_phone_number" class="form-control" type="hidden" name="customer_phone_number" value="" readonly />
+                <input id="customer_address" class="form-control" type="hidden" name="customer_address" value="" readonly />
+                <input id="customer_city" class="form-control" type="hidden" name="customer_city" value="" readonly />
+                <input id="customer_country" class="form-control" type="hidden" name="customer_country" value="" readonly />
+                <input id="customer_state" class="form-control" type="hidden" name="customer_state" value="" readonly />
+                <input id="customer_zip_code" class="form-control" type="hidden" name="customer_zip_code" value="" readonly />
               </div>
               <div class="d-grid gap-2 col-12 mx-auto mt-4">
                 <button type="submit" class="btn btn-primary">
@@ -68,7 +77,10 @@
     <script src="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- CinetPay -->
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
     <script src="public/js/slider.js"></script>
+    <script src="public/js/cinetPay.js"></script>
     <script>
       MicroModal.init();
     </script>

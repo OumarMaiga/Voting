@@ -6,6 +6,9 @@
     use Model\User;
     use Model\Candidat;
     use Model\Vote;
+    use Model\Paiement;
+    use Model\Ticket;
+    use Model\Commande;
 
     use API\Wizall;
 
@@ -16,6 +19,8 @@
         private $wizall;
         private $candidat;
         private $vote;
+        private $ticket;
+        private $commande;
         
         public function __construct() {
             $this->event = new Event;
@@ -23,6 +28,9 @@
             $this->wizall = new Wizall;
             $this->candidat = new Candidat;
             $this->vote = new Vote;
+            $this->paiement = new Paiement;
+            $this->ticket = new Ticket;
+            $this->commande = new Commande;
         }
 
         public function paiement_orange_money() {
@@ -140,6 +148,19 @@
 
         public function paiement_ticket()
         {
-            die('Fontionnalite non disponible ...');
+            
+            //die('Fontionnalite non disponible ...');
+            $paiement = $this->paiement->save($_POST);
+            if($paiement) {
+                $ticket = $this->ticket->getById($paiement['ticket_id']);
+                $commande = $this->commande->getById($paiement['commande_id']);
+                $count = $ticket['count'] - $commande['count'];
+                $response = $this->ticket->update_count($ticket['id'], $count);
+                $response->execute();
+            }
+            
+            header("Content-Type: application/json");
+            echo json_encode(['paiement' => $paiement]);
+            return;
         }
     }
