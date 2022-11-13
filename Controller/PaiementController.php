@@ -19,6 +19,7 @@
         private $wizall;
         private $candidat;
         private $vote;
+        private $paiement;
         private $ticket;
         private $commande;
         
@@ -146,21 +147,73 @@
             require('View/page/paiement_wave.php');
         }
 
-        public function paiement_ticket()
-        {
-            
-            //die('Fontionnalite non disponible ...');
-            $paiement = $this->paiement->save($_POST);
-            if($paiement) {
-                $ticket = $this->ticket->getById($paiement['ticket_id']);
-                $commande = $this->commande->getById($paiement['commande_id']);
-                $count = $ticket['count'] - $commande['count'];
-                $response = $this->ticket->update_count($ticket['id'], $count);
-                $response->execute();
+        public function check_paiement_ticket()
+        {            
+
+            // Verification de la transaction
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api-checkout.cinetpay.com/v2/payment/check',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => '{
+                    "transaction_id": '.$_POST['transaction_id'].', //ENTRER VOTRE TRANSACTION ID
+                    "site_id": "112927115762d1e45cb26ef2.15035831", //ENTRER VOTRE SITE ID
+                    "apikey" : "229906" //ENTRER VOTRE APIKEY
+
+                }',
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/json'
+                ),
+            ));
+
+            $response = curl_exec($curl);
+
+            $err = curl_error($curl);
+            curl_close($curl);
+            if ($err) {
+                //echo $err;
+                throw new Exception("Error :" . $err);
+            } 
+            else
+            {
+                $res = json_decode($response,true);
+                //print_r($res);
+                if ($res['code'] == "00") 
+                {
+                    
+                    $paiement = $this->paiement->getBy('transaction_id', $_POST['transaction_id'])[0];
+                    $ticket = $this->ticket->getById($paiement['ticket_id']);
+                    $commande = $this->commande->getById($paiement['commande_id']);
+
+                    $req = $this->commande->update_etat(array('etat' => 'commande', 'id' => $commande['id']));
+                    $req->execute();
+
+                    $count = $ticket['count'] - $commande['count'];
+                    $req = $this->ticket->update_count($ticket['id'], $count);
+                    $req->execute();
+
+                    $req = $this->paiement->update_etat(array("etat" => 1 , "transaction_id" => $_POST['transaction_id']));
+                    $req->execute();
+                    
+                    header('location:index.php?action=buy_ticket&id='.$ticket['id']."&msg=paiement_ticket_success&code=".$commande['code']);                        
+                    
+                }
+                else if ($res['code'] == "627") 
+                {
+                    header('location:index.php?action=buy_ticket&id='.$ticket['id']."&msg=paiement_ticket_echec&code=TRANSACTION_CANCEL");
+                }
+                else 
+                {
+                    header('location:index.php?action=buy_ticket&id='.$ticket['id']."&msg=paiement_ticket_echec&code=UNKNOWN");
+                }
             }
-            
-            header("Content-Type: application/json");
-            echo json_encode(['paiement' => $paiement]);
-            return;
+            header('location:index.php?action=buy_ticket&id='.$ticket['id']."&msg=paiement_ticket_echec&code=UNKNOWN...");
         }
     }

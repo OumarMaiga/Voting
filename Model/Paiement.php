@@ -12,11 +12,12 @@
             $this->db = (new DatabaseConnector())->getConnection();
         }
         public function save(Array $inputs) {
-            $req = $this->db->prepare('INSERT INTO paiements (event_id, ticket_id, commande_id, montant, w_from, currency, transaction_id, description, channels, payment_method, operator_id, customer_name, customer_surname, customer_email, customer_phone_number, customer_address, customer_city, customer_country, customer_state, customer_zip_code, created_at)
-                                        VALUES(:event_id, :ticket_id, :commande_id, :montant, :w_from, :currency, :transaction_id, :description, :channels, :payment_method, :operator_id, :customer_name, :customer_surname, :customer_email, :customer_phone_number, :customer_address, :customer_city, :customer_country, :customer_state, :customer_zip_code, NOW())');
+            $req = $this->db->prepare('INSERT INTO paiements (event_id, ticket_id, commande_id, etat, montant, w_from, currency, transaction_id, description, channels, payment_method, operator_id, customer_name, customer_surname, customer_email, customer_phone_number, customer_address, customer_city, customer_country, customer_state, customer_zip_code, created_at)
+                                        VALUES(:event_id, :ticket_id, :commande_id, :etat, :montant, :w_from, :currency, :transaction_id, :description, :channels, :payment_method, :operator_id, :customer_name, :customer_surname, :customer_email, :customer_phone_number, :customer_address, :customer_city, :customer_country, :customer_state, :customer_zip_code, NOW())');
             $req->bindParam(':event_id', $inputs['event_id']);
             $req->bindParam(':ticket_id', $inputs['ticket_id']);
             $req->bindParam(':commande_id', $inputs['commande_id']);
+            $req->bindParam(':etat', $inputs['etat']);
             $req->bindParam(':montant', $inputs['montant']);
             $req->bindParam(':w_from', $inputs['from']);
             $req->bindParam(':currency', $inputs['currency']);
@@ -37,6 +38,13 @@
             $req->execute();
             $paiement = $this->getById($this->db->lastInsertId());
             return $paiement;
+        }
+        
+        public function update_etat(Array $inputs) {
+            $req = $this->db->prepare('UPDATE paiements SET etat = :etat , updated_at = NOW() WHERE transaction_id = :transaction_id');
+            $req->bindParam(':etat', $inputs['etat']);
+            $req->bindParam(':transaction_id', $inputs['transaction_id']);
+            return $req;
         }
         
         public function getById($id) {

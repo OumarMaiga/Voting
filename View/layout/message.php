@@ -219,13 +219,24 @@
         $msgText = "Bravo ! &nbsp; Merci pour le vote";
         $bgColor = " bg-success";
     } else if ($msg === "paiement_ticket_echec") {
-        $msgText = "Erreur ! &nbsp; Paiement echoué. Veuillez ressayer s'il vous plait";
-        $bgColor = " bg-danger";
+            $msgText = "Erreur ! &nbsp; Paiement echoué. Veuillez ressayer s'il vous plait";
+            $bgColor = " bg-danger";
+        if (isset($_GET['code'])) {
+            if ($_GET['code'] === "TRANSACTION_CANCEL") {
+                $msgText = "Erreur ! &nbsp; Paiement echoué. Transaction annulée";
+            }
+            else if ($_GET['code'] === "UNKNOWN") {
+                $msgText = "Erreur ! &nbsp; Paiement echoué. Veuillez ressayer s'il vous plait ...";
+            }
+        }
     } else if ($msg === "paiement_ticket_success") {
-        $msgText = "Bravo ! &nbsp; Paiement valide. Veuillez noter le code de votre ticket commandé (".$_GET['commande_code'].")";
+        $msgText = "Bravo ! &nbsp; Paiement valide";
         $bgColor = " bg-success";
+        if (isset($_GET['code'])) {
+            $msgText = "Bravo ! &nbsp; Veuillez noter le code de votre ticket (".$_GET['code'].")";
+        }
     } else {
-        $msgText = "";
+        $msgText = "...";
         $bgColor = " bg-secondary";
     }
 ?>

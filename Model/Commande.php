@@ -78,7 +78,14 @@
             $req = $this->db->query("SELECT * from commandes WHERE code like '%$query%' AND ticket_id=$ticket_id");
             return $req;
         }
-        
+
+        public function update_etat(Array $inputs) {
+            $req = $this->db->prepare('UPDATE commandes SET etat = :etat , updated_at = NOW() WHERE id = :id');
+            $req->bindParam(':etat', $inputs['etat']);
+            $req->bindParam(':id', $inputs['id']);
+            return $req;
+        }
+
         public function consommer($id) {
             $req = $this->db->prepare('UPDATE commandes SET used=1, paid=1 WHERE id=:id');
             $req->bindParam(':id', $id);

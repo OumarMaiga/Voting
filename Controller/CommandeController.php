@@ -4,14 +4,18 @@
 
     use Model\Commande;
     use Model\Ticket;
+    use Model\Paiement;
 
     class CommandeController {
         
         private $commande;
+        private $ticket;
+        private $paiement;
         
         public function __construct() {
             $this->commande = new Commande;
             $this->ticket = new Ticket;
+            $this->paiement = new Paiement;
         }
 
         public function index($ticket_id) {
@@ -27,43 +31,76 @@
 
         public function save($ticket_id) {
             // Impossible si le user n'est pas connecter
-            /*if (!isset($_SESSION['user']) || $_SESSION['user']['id'] == null) {
-                header('location:index.php?action=accueil&msg=user_required');
-                exit;
-            }*/
+
+            $commande_data = $_POST['commande'];
+            $paiement_data = $_POST['paiement'];
+
             $ticket = $this->ticket->getById($ticket_id);
 
             if (empty($ticket)) {
-                header('location:index.php?action=accueil&ticket_id='.$ticket_id.'&msg=ticket_not_found');
-                exit;
-            } else if ($_POST['count'] > $ticket['count']) {
-                header('location:index.php?action=buy_ticket&id='.$ticket_id.'&msg=ticket_not_complete&count='.$ticket['count']);
-                exit;
+                echo json_encode(
+                    array(
+                        'message' => "TICKET_NOT_FOUND",
+                        'code' => 404
+                    )
+                );
+                return;
+            }
+            if ($commande_data['count'] > $ticket['count']) {
+                echo json_encode(
+                    array(
+                        'message' => "TICKET_LOW",
+                        'code' => 405
+                    )
+                );
+                return;
             }
  
             $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            // Output: 54esmdr0qf
-            $code = substr(str_shuffle($permitted_chars), 0, 6);
+            $code = substr(str_shuffle($permitted_chars) , 0 , 6);
 
-            $_POST['code'] = $code;
-            $_POST['ticket_id'] = $ticket_id;
-            $_POST['etat'] = "precommande";
-            $commande = $this->commande->save($_POST);
+            $commande_data['code'] = $code;
+            $commande_data['ticket_id'] = $ticket_id;
+            $commande_data['etat'] = "precommande";
+            $commande = $this->commande->save($commande_data);
             
             if($commande->execute()) {
                 $commande = $this->commande->getLast();
-                $_POST['commande_id'] = $commande['id'];
-                $_POST['ticket_montant'] = $ticket['montant'] * $commande['count'];
-                $_SESSION['commande'] = $_POST;
-                /*$diff = $ticket['count'] - $_POST['count'];
-                $count = $diff;
-                $response = $this->ticket->update_count($ticket_id, $count);
-                $response->execute();*/
-                header('location:index.php?action=paiement_ticket_page&ticket_id='.$ticket_id.'&msg=commande_created');
-                exit;
+                $commande_data['commande_id'] = $commande['id'];
+                //$commande_data['montant'] = $ticket['montant'] * $commande['count'];
+                
+                //Save paiement
+                $paiement_data['etat'] = 0;
+                $paiement_data['commande_id'] = $commande['id'];
+                $paiement_data['ticket_id'] = $commande_data['ticket_id'];
+                $paiement_data['montant'] = $commande_data['montant'];
+                $paiement = $this->paiement->save($paiement_data);
+                /*if($paiement) {
+                    // Reduire le nombre de ticket
+                    $ticket = $this->ticket->getById($paiement['ticket_id']);
+                    $commande = $this->commande->getById($paiement['commande_id']);
+                    $count = $ticket['count'] - $commande['count'];
+                    $response = $this->ticket->update_count($ticket['id'], $count);
+                    $response->execute();
+                }*/
+                
+                echo json_encode(
+                    array(
+                        'message' => "COMMANDE_CREATED",
+                        'code' => 201
+                    )
+                );
+                return;
+            
             } else {
-                header('location:index.php?action=buy_ticket&id='.$ticket_id.'&msg=commande_not_created');
-                exit;
+                
+                echo json_encode(
+                    array(
+                        'message' => "COMMANDE_NOT_CREATED",
+                        'code' => 500
+                    )
+                );
+                return;
             }
 
         }

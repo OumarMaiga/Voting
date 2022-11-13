@@ -92,8 +92,8 @@
         case  'paiement_wave':
             $paiement->paiement_wave();
             break;
-        case  'paiement_ticket':
-            $paiement->paiement_ticket();
+        case  'check_paiement_ticket':
+            $paiement->check_paiement_ticket();
             break;
 
 //////////////////////////// CandidatController //////////////////////////////////        

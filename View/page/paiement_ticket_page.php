@@ -79,6 +79,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <!-- CinetPay -->
     <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="public/js/slider.js"></script>
     <script src="public/js/cinetPay.js"></script>
     <script>
