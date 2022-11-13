@@ -56,10 +56,6 @@
                 return;
             }
  
-            $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $code = substr(str_shuffle($permitted_chars) , 0 , 6);
-
-            $commande_data['code'] = $code;
             $commande_data['ticket_id'] = $ticket_id;
             $commande_data['etat'] = "precommande";
             $commande = $this->commande->save($commande_data);
@@ -67,7 +63,6 @@
             if($commande->execute()) {
                 $commande = $this->commande->getLast();
                 $commande_data['commande_id'] = $commande['id'];
-                //$commande_data['montant'] = $ticket['montant'] * $commande['count'];
                 
                 //Save paiement
                 $paiement_data['etat'] = 0;
@@ -75,14 +70,6 @@
                 $paiement_data['ticket_id'] = $commande_data['ticket_id'];
                 $paiement_data['montant'] = $commande_data['montant'];
                 $paiement = $this->paiement->save($paiement_data);
-                /*if($paiement) {
-                    // Reduire le nombre de ticket
-                    $ticket = $this->ticket->getById($paiement['ticket_id']);
-                    $commande = $this->commande->getById($paiement['commande_id']);
-                    $count = $ticket['count'] - $commande['count'];
-                    $response = $this->ticket->update_count($ticket['id'], $count);
-                    $response->execute();
-                }*/
                 
                 echo json_encode(
                     array(

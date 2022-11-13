@@ -117,6 +117,9 @@
         public function buy($id) {
             $ticket = $this->ticket->getById($id);
 
+            $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $code = substr(str_shuffle($permitted_chars) , 0 , 6);
+            
             if(!empty($ticket)) {
                 // Formatage de la date
                 if ($ticket['expire'] == NULL) {

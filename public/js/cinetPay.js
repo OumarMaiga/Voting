@@ -111,9 +111,9 @@ $(document).ready(function() {
             "metadata": "user1",
             "lang": "FR",
             "invoice_data": {
-                "donnee1": "",
-                "donnee2": "",
-                "donnee3": ""
+                "Ticket": form_data.ticket_title,
+                "Code": form_data.commande_code,
+                "Nom complet": form_data.prenom + " " + form_data.nom 
             }
         });
 
