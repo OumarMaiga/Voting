@@ -28,11 +28,11 @@
             </div>
             <div class="col-md-2">
                 <h5 class="text-white mb-4">Contacts</h5>
-                <p class="text-white">
-                    223 76 62 33 72
+                <p>
+                    <a href="tel:+223 78 59 49 11" class="text-white">+223 78 59 49 11</a>
                 </p>
-                <p class="text-white">
-                    223 71 31 65 44
+                <p>
+                    <a href="tel:+223 71 31 65 44" class="text-white">+223 71 31 65 44</a>
                 </p>
             </div>
             <div class="col-md-2">
