@@ -9,6 +9,7 @@
     use Model\Commande;
 
     use API\Wizall;
+    use API\Orange;
 
     class PageController {
         
@@ -17,6 +18,7 @@
         private $wizall;
         private $candidat;
         private $ticket;
+        private $orange;
         
         public function __construct() {
             $this->event = new Event;
@@ -25,6 +27,7 @@
             $this->candidat = new Candidat;
             $this->ticket = new Ticket;
             $this->commande = new Commande;
+            $this->orange = new Orange;
         }
 
         public function accueil() {
@@ -119,4 +122,19 @@
             );
             return;
         }
+
+        
+        public function get_orange_token_page() {
+            $token = "";
+            if (isset($_POST['token'])) 
+            {
+                $get_token = $this->orange->get_token();
+                if(isset($get_token->access_token))
+                {
+                    $token = $get_token->access_token;
+                }
+            }
+            require('View/page/get_orange_token_page.php');
+        }     
+
     }

@@ -85,17 +85,18 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-12">                    
+                <div class="col-12">
                   <label for="count" class="form-label">Nombre de ticket</label>
                   <input type="number" min="1" max="<?= $ticket['count'] ?>" class="form-control" name="count" id="count" value="1"/>
                 </div>
                 <div class="hidden-field">
-                  <!--<input id="montant" class="form-control" type="hidden" name="montant" value="<?= $ticket['montant'] ?>" readonly />-->
-                  <input id="montant" class="form-control" type="text" name="montant" value="100" readonly />
-                  <input id="montant_unite" class="form-control" type="hidden" name="montant_unite" value="100" readonly />
+                  <input id="montant" class="form-control" type="hidden" name="montant" value="<?= $ticket['montant'] ?>" readonly />
+                  <!--<input id="montant" class="form-control" type="text" name="montant" value="100" readonly />-->
+                  <input id="montant_unite" class="form-control" type="hidden" name="montant_unite" value="<?= $ticket['montant'] ?>" readonly />
+                  <!--<input id="montant_unite" class="form-control" type="hidden" name="montant_unite" value="100" readonly />-->
                   <input id="ticket_id" class="form-control" type="hidden" name="ticket_id" value="<?= $ticket['id'] ?>" readonly />
                   <input id="ticket_title" class="form-control" type="hidden" name="ticket_title" value="<?= $ticket['title'] ?>" readonly />
-                  <input id="commande_code" class="form-control" type="hidden" name="commande_code" value="<?= $code ?>" readonly />
+                  <input id="commande_code" class="form-control" type="hidden" name="code" value="<?= $code ?>" readonly />
                   <input id="customer_name" class="form-control" type="hidden" name="customer_name" value="" readonly />
                   <input id="customer_surname" class="form-control" type="hidden" name="customer_surname" value="" readonly />
                   <input id="customer_email" class="form-control" type="hidden" name="customer_email" value="" readonly />

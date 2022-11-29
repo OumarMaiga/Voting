@@ -75,6 +75,9 @@
         case 'search':
             $page->search($_GET['ticket_id'], $_GET['query']);
             break;
+        case 'get_orange_token_page':
+            $page->get_orange_token_page();
+            break;
 
 //////////////////////////// PaiementController //////////////////////////////////    
         case  'paiement_orange_money':

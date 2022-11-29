@@ -30,8 +30,7 @@
         }
 
         public function save($ticket_id) {
-            // Impossible si le user n'est pas connecter
-
+            
             $commande_data = $_POST['commande'];
             $paiement_data = $_POST['paiement'];
 

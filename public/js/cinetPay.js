@@ -112,7 +112,7 @@ $(document).ready(function() {
             "lang": "FR",
             "invoice_data": {
                 "Ticket": form_data.ticket_title,
-                "Code": form_data.commande_code,
+                "Code": form_data.code,
                 "Nom complet": form_data.prenom + " " + form_data.nom 
             }
         });
